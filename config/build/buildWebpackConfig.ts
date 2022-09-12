@@ -3,13 +3,15 @@ import webpack from "webpack";
 import {BuildModules} from "./buildModules";
 import {BuildResolvers} from "./buildResolvers";
 import {BuildPlugins} from "./buildPlugins";
+import {BuildDevServer} from "./buildDevServer";
 
 export function BuildWebpackConfig (options: BuildOptions): webpack.Configuration {
-    const {mode, paths} = options
+    const {mode, paths, isDev} = options
 
     return {
         mode,
         entry: paths.entry,
+        devtool: isDev ? 'inline-source-map' : undefined,
         module: BuildModules(),
         resolve: BuildResolvers(),
         output: {
@@ -17,6 +19,7 @@ export function BuildWebpackConfig (options: BuildOptions): webpack.Configuratio
             path: paths.build,
             clean: true
         },
-        plugins: BuildPlugins(paths)
+        plugins: BuildPlugins(paths),
+        devServer: isDev ? BuildDevServer(options) : undefined
     }
 }
