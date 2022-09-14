@@ -12,10 +12,10 @@ export function BuildWebpackConfig (options: BuildOptions): webpack.Configuratio
         mode,
         entry: paths.entry,
         devtool: isDev ? 'inline-source-map' : undefined,
-        module: BuildModules(),
+        module: BuildModules(options),
         resolve: BuildResolvers(),
         output: {
-            filename: 'bundle.[contenthash].js',
+            filename: '[name].[contenthash].js',
             path: paths.build,
             clean: true
         },
