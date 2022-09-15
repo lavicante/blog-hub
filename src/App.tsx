@@ -4,13 +4,14 @@ import { Suspense, useContext } from "react";
 import "./styles/index.scss";
 import { Theme, ThemeContext } from "./theme/ThemeContext";
 import { useTheme } from "./theme/useTheme";
+import { classNames } from "./helpers/classNames";
 
 const App = () => {
   const routes = useRoutes(routersConfig);
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className={`app ${theme}`}>
+    <div className={classNames("app", [theme])}>
       <button onClick={toggleTheme}>Change theme</button>
       <Link to={"/"}>Главная</Link>
       <Link to={"/about"}>О нас</Link>
