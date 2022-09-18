@@ -1,10 +1,13 @@
 import { Link, useRoutes } from "react-router-dom";
-import { routersConfig } from "./routers";
-import { Suspense, useContext } from "react";
+import { routersConfig } from "shared/config";
+import { Suspense } from "react";
+import {
+  Theme,
+  ThemeContext,
+} from "app/providers/ThemeProvider/lib/ThemeContext";
+import { useTheme } from "app/providers/ThemeProvider";
+import { classNames } from "shared/lib/classNames";
 import "./styles/index.scss";
-import { Theme, ThemeContext } from "./theme/ThemeContext";
-import { useTheme } from "./theme/useTheme";
-import { classNames } from "./helpers/classNames";
 
 const App = () => {
   const routes = useRoutes(routersConfig);

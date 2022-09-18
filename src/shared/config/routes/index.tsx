@@ -1,8 +1,8 @@
 import { RouteObject } from "react-router-dom";
 import React from "react";
 
-const Main = React.lazy(() => import("../components/Main"));
-const About = React.lazy(() => import("../components/About"));
+const Main = React.lazy(() => import("pages/Main"));
+const About = React.lazy(() => import("pages/About"));
 
 export const routersConfig: RouteObject[] = [
   {
