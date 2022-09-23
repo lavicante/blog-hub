@@ -3,7 +3,6 @@ import { routersConfig } from "../config/routerConfig";
 import { Route, Routes, useRoutes } from "react-router-dom";
 
 const AppRouter = () => {
-  const routes = useRoutes(Object.values(routersConfig));
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
