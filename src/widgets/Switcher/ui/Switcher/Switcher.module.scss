@@ -1,0 +1,21 @@
+.Switcher{
+  position: relative;
+  background: var(--invert-bg-color);
+
+  width: var(--switcher-width);
+  height: calc(100vh - var(--navbar-height));
+
+  transition: width 0.3s ease-in-out;
+}
+
+.collapsed{
+  width: var(--switcher-width-collapsed)
+}
+
+.switchers{
+  width: 100%;
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
