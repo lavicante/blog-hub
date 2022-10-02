@@ -4,17 +4,21 @@ import "./styles/index.scss";
 import { AppRouter } from "app/routers";
 import { Navbar } from "widgets/Navbar";
 import { Switcher } from "widgets/Switcher";
+import { Suspense } from "react";
+import { useTranslation } from "react-i18next";
 
 const App = () => {
   const { theme } = useTheme();
 
   return (
     <div className={classNames("app", [theme])}>
-      <Navbar />
-      <div className="content-page">
-        <Switcher />
-        <AppRouter />
-      </div>
+      <Suspense fallback="">
+        <Navbar />
+        <div className="content-page">
+          <Switcher />
+          <AppRouter />
+        </div>
+      </Suspense>
     </div>
   );
 };

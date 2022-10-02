@@ -21,7 +21,7 @@ export function BuildWebpackConfig(
       path: paths.build,
       clean: true,
     },
-    plugins: BuildPlugins(paths),
+    plugins: BuildPlugins(paths, options),
     devServer: isDev ? BuildDevServer(options) : undefined,
   };
 }
