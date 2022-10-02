@@ -3,7 +3,7 @@ type Mode = Record<string, boolean | string>;
 export const classNames = (
   cls: string,
   additional?: string[],
-  mods?: Mode,
+  mods?: Mode
 ): string => {
   if (!additional && !mods) return cls;
 

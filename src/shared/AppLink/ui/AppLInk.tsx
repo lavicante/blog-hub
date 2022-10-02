@@ -1,11 +1,12 @@
-import { classNames } from "shared/lib/classNames";
-import classes from "./AppLink.module.scss";
-import { Link, LinkProps } from "react-router-dom";
-import { PropsWithChildren, ReactNode } from "react";
+import { ReactNode } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
+import { classNames } from 'shared/lib/classNames';
+
+import classes from './AppLink.module.scss';
 
 export enum AppLinkTheme {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
 }
 
 interface AppLInkProps extends LinkProps {
@@ -20,14 +21,12 @@ export const AppLInk = ({
   to,
   theme,
   ...otherProps
-}: AppLInkProps) => {
-  return (
-    <Link
-      to={to}
-      className={classNames(classes.AppLInk, [className, classes[theme]])}
-      {...otherProps}
-    >
-      {children}
-    </Link>
-  );
-};
+}: AppLInkProps) => (
+  <Link
+    to={to}
+    className={classNames(classes.AppLInk, [className, classes[theme]])}
+    {...otherProps}
+  >
+    {children}
+  </Link>
+);

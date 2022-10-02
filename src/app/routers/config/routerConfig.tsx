@@ -1,17 +1,17 @@
-import { RouteObject } from "react-router-dom";
-import React from "react";
+import React from 'react';
+import { RouteObject } from 'react-router-dom';
 
-const Main = React.lazy(() => import("pages/Main"));
-const About = React.lazy(() => import("pages/About"));
+const Main = React.lazy(() => import('pages/Main'));
+const About = React.lazy(() => import('pages/About'));
 
 export const enum AppRoutes {
-  MAIN = "main",
-  ABOUT = "about",
+  MAIN = 'main',
+  ABOUT = 'about',
 }
 
 export const AppPath: Record<AppRoutes, string> = {
-  [AppRoutes.MAIN]: "/",
-  [AppRoutes.ABOUT]: "/about",
+  [AppRoutes.MAIN]: '/',
+  [AppRoutes.ABOUT]: '/about',
 };
 
 export const routersConfig: Record<AppRoutes, RouteObject> = {
