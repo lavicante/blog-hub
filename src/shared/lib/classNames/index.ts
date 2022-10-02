@@ -3,12 +3,12 @@ type Mode = Record<string, boolean | string>;
 export const classNames = (
   cls: string,
   additional?: string[],
-  mods?: Mode
+  mods?: Mode,
 ): string => {
   if (!additional && !mods) return cls;
 
   if (additional && !mods) {
-    return [cls, ...additional].join(" ");
+    return [cls, ...additional].join(' ');
   }
 
   if (!additional && mods) {
@@ -17,7 +17,7 @@ export const classNames = (
       ...Object.entries(mods)
         .filter(([className, value]) => Boolean(value))
         .map(([className]) => className),
-    ].join(" ");
+    ].join(' ');
   }
 
   return [
@@ -26,5 +26,5 @@ export const classNames = (
     ...Object.entries(mods)
       .filter(([className, value]) => Boolean(value))
       .map(([className]) => className),
-  ].join(" ");
+  ].join(' ');
 };

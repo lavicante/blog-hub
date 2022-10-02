@@ -2,7 +2,7 @@ import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,
   useThemeContext,
-} from "./ThemeContext";
+} from './ThemeContext';
 
 interface IUseThemeResult {
   toggleTheme: () => void;

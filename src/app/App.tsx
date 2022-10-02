@@ -5,7 +5,6 @@ import { AppRouter } from "app/routers";
 import { Navbar } from "widgets/Navbar";
 import { Switcher } from "widgets/Switcher";
 import { Suspense } from "react";
-import { useTranslation } from "react-i18next";
 
 const App = () => {
   const { theme } = useTheme();
