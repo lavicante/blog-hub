@@ -1,8 +1,10 @@
-import { classNames } from "shared/lib/classNames";
-import classes from "./Switcher.module.scss";
-import React, { useState } from "react";
-import { ThemeButton } from "shared/ThemeButton/ui/ThemeButton";
-import { SwitcherButton } from "shared/SwitcherButton/ui/SwitcherButton";
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { classNames } from 'shared/lib/classNames';
+import { SwitcherButton } from 'shared/SwitcherButton/ui/SwitcherButton';
+import { ThemeButton } from 'shared/ThemeButton/ui/ThemeButton';
+
+import classes from './Switcher.module.scss';
 
 interface SwitcherProps {
   className?: string;
@@ -10,6 +12,7 @@ interface SwitcherProps {
 
 export const Switcher = ({ className }: SwitcherProps) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const onCollapsed = () => setCollapsed((prev) => !prev);
 
@@ -19,7 +22,7 @@ export const Switcher = ({ className }: SwitcherProps) => {
         [classes.collapsed]: collapsed,
       })}
     >
-      <button onClick={onCollapsed}>toggle</button>
+      <button onClick={onCollapsed}>{t('toggle')}</button>
       <div className={classes.switchers}>
         <ThemeButton />
         <SwitcherButton />

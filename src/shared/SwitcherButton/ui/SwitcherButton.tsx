@@ -1,7 +1,8 @@
-import { classNames } from "shared/lib/classNames";
-import classes from "./SwitcherButton.module.scss";
-import { Button, VariantButton } from "shared/Button/Button";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
+import { Button, VariantButton } from 'shared/Button/Button';
+import { classNames } from 'shared/lib/classNames';
+
+import classes from './SwitcherButton.module.scss';
 
 interface SwitcherButtonProps {
   className?: string;
@@ -11,7 +12,7 @@ export const SwitcherButton = ({ className }: SwitcherButtonProps) => {
   const { t, i18n } = useTranslation();
 
   const toggle = () => {
-    i18n.changeLanguage(i18n.language === "ru" ? "en" : "ru");
+    i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
   };
 
   return (
@@ -20,7 +21,7 @@ export const SwitcherButton = ({ className }: SwitcherButtonProps) => {
       className={classNames(classes.SwitcherButton, [className])}
       variant={VariantButton.CLEAR}
     >
-      {t("Русский")}
+      {t('Русский')}
     </Button>
   );
 };

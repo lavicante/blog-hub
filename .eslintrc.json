@@ -10,7 +10,8 @@
         "airbnb",
         "prettier",
         "plugin:import/recommended",
-        "plugin:import/typescript"
+        "plugin:import/typescript",
+        "plugin:i18next/recommended"
     ],
     "overrides": [
     ],
@@ -24,7 +25,8 @@
         "@typescript-eslint",
         "prettier",
         "import",
-        "simple-import-sort"
+        "simple-import-sort",
+        "i18next"
     ],
     "rules": {
         "import/no-unresolved": "off",

@@ -1,13 +1,13 @@
-.Navbar{
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: var(--navbar-height);
-  background: var(--invert-bg-color);
+.Navbar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: var(--navbar-height);
+    background: var(--invert-bg-color);
 }
 
-.Links{
-  display: flex;
-  gap: 20px;
-  margin-left: auto;
+.Links {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
 }
