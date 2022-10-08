@@ -1,9 +1,8 @@
-import { classNames } from "shared/lib/classNames";
-import classes from "./ThemeButton.module.scss";
-import { Theme, useTheme } from "app/providers/ThemeProvider";
-import LightIcon from "shared/assets/icons/theme-light.svg";
-import DarkIcon from "shared/assets/icons/theme-dark.svg";
-import { Button, VariantButton } from "shared/Button/Button";
+import { Theme, useTheme } from 'app/providers/ThemeProvider';
+import DarkIcon from 'shared/assets/icons/theme-dark.svg';
+import LightIcon from 'shared/assets/icons/theme-light.svg';
+import { Button, VariantButton } from 'shared/Button/Button';
+import { classNames } from 'shared/lib/classNames';
 
 interface ThemeButtonProps {
   className?: string;
@@ -15,7 +14,7 @@ export const ThemeButton = ({ className }: ThemeButtonProps) => {
     <Button
       variant={VariantButton.CLEAR}
       onClick={toggleTheme}
-      className={classNames(classes.ThemeButton, [className])}
+      className={classNames('', [className])}
     >
       {theme === Theme.LIGHT ? <LightIcon /> : <DarkIcon />}
     </Button>

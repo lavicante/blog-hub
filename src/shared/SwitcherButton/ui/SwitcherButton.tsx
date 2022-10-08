@@ -2,8 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
 
-import classes from './SwitcherButton.module.scss';
-
 interface SwitcherButtonProps {
   className?: string;
 }
@@ -18,7 +16,7 @@ export const SwitcherButton = ({ className }: SwitcherButtonProps) => {
   return (
     <Button
       onClick={toggle}
-      className={classNames(classes.SwitcherButton, [className])}
+      className={classNames('', [className])}
       variant={VariantButton.CLEAR}
     >
       {t('Русский')}
