@@ -43,7 +43,18 @@ export function BuildModules(options: BuildOptions): webpack.ModuleOptions {
     exclude: /node_modules/,
   };
 
+  const babelLoader = {
+    test: /\.m?js$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+      },
+    },
+  };
+
   return {
-    rules: [tsLoaderRules, stylesLoader, svgLoader, fileLoader],
+    rules: [tsLoaderRules, stylesLoader, svgLoader, fileLoader, babelLoader],
   };
 }
