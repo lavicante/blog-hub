@@ -13,7 +13,8 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "unit": "jest --config ./config/jest/jest.config.ts",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier:code": "prettier --write \"*/**/*.{js,ts,jsx,tsx}\""
   },
   "repository": {
     "type": "git",
