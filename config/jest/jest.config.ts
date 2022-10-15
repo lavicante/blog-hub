@@ -132,9 +132,9 @@ export default {
   // The test environment that will be used for testing
 
   // Options that will be passed to the testEnvironment
-  // testEnvironmentOptions: {
-  //   url: 'http://localhost/',
-  // },
+  testEnvironmentOptions: {
+    url: 'http://localhost/',
+  },
 
   // Adds a location field to test results
   // testLocationInResults: false,
@@ -156,7 +156,7 @@ export default {
   // testRunner: "jest-circus/runner",
 
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
-  // testURL: 'http://localhost/',
+  testURL: 'http://localhost/',
 
   // Setting this value to "fake" allows the use of fake timers for functions such as "setTimeout"
   // timers: "real",
@@ -176,7 +176,7 @@ export default {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  // verbose: true,
+  verbose: true,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],

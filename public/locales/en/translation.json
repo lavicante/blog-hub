@@ -4,5 +4,7 @@
   "Новый пример": "New example",
   "Русский": "English",
   "toggle": "toggle",
-  "Страница не найдена": "Page not found"
+  "Страница не найдена": "Page not found",
+  "Упс, произошла ошибка! Попробуйте перезагрузить страницу": "Oops, an error has occurred! Try reloading the page",
+  "Перезагрузить": "Reload"
 }
