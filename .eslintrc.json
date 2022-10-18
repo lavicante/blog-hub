@@ -44,6 +44,8 @@
         "react/require-default-props": "off",
         "prettier/prettier": "error",
         "simple-import-sort/imports": "error",
-        "simple-import-sort/exports": "error"
+        "simple-import-sort/exports": "error",
+        "react/button-has-type": "off",
+        "react/jsx-props-no-spreading": "off"
     }
 }

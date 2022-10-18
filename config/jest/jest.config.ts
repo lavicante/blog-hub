@@ -3,27 +3,25 @@
  * https://jestjs.io/docs/configuration
  */
 
+import path from 'path';
+
 export default {
-  // All imported modules in your tests should be mocked automatically
-  // automock: false,
-
-  // Stop running tests after `n` failures
-  // bail: 0,
-
-  // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "C:\\Users\\tim\\AppData\\Local\\Temp\\jest",
-
-  // Automatically clear mock calls, instances and results before every test
   clearMocks: true,
-  testEnvironment: 'jest-environment-jsdom-sixteen',
+  testEnvironment: 'jsdom',
   coveragePathIgnorePatterns: ['\\\\node_modules\\\\'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
   moduleDirectories: ['node_modules'],
+  modulePaths: ['<rootDir>src'],
   testMatch: [
     // Обнаружил разницу между МАК ОС и ВИНДОУС!!!
     '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
   ],
   rootDir: '../../',
+  setupFilesAfterEnv: ['<rootDir>config/jest/setupTest.ts'],
+  moduleNameMapper: {
+    '\\.s?css$': 'identity-obj-proxy',
+    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+  },
   // Indicates whether the coverage information should be collected while executing the test
   // collectCoverage: false,
 
@@ -132,9 +130,7 @@ export default {
   // The test environment that will be used for testing
 
   // Options that will be passed to the testEnvironment
-  testEnvironmentOptions: {
-    url: 'http://localhost/',
-  },
+  // testEnvironmentOptions: {},
 
   // Adds a location field to test results
   // testLocationInResults: false,
@@ -156,15 +152,13 @@ export default {
   // testRunner: "jest-circus/runner",
 
   // This option sets the URL for the jsdom environment. It is reflected in properties such as location.href
-  testURL: 'http://localhost/',
+  // testURL: "http://localhost",
 
   // Setting this value to "fake" allows the use of fake timers for functions such as "setTimeout"
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: {
-  //   '^.+\\.(ts|tsx)$': 'ts-jest',
-  // },
+  // transform: undefined,
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -176,7 +170,7 @@ export default {
   // unmockedModulePathPatterns: undefined,
 
   // Indicates whether each individual test should be reported during the run
-  verbose: true,
+  // verbose: undefined,
 
   // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
   // watchPathIgnorePatterns: [],

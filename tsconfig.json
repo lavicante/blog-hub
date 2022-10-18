@@ -19,5 +19,8 @@
       "module": "CommonJS",
       "types": ["jest", "node"]
     }
-  }
+  },
+  "include": [
+    "./config/jest/setupTest.ts"
+  ]
 }

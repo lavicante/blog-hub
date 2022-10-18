@@ -1,4 +1,4 @@
-import { classNames } from './index';
+import { classNames } from 'shared/lib/classNames/index';
 
 describe('classNames tests', () => {
   test('single class', () => {

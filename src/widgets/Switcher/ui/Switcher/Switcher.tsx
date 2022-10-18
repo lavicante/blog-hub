@@ -18,6 +18,7 @@ export const Switcher = ({ className }: SwitcherProps) => {
 
   return (
     <div
+      data-testid='sidebar'
       className={classNames(classes.Switcher, [className], {
         [classes.collapsed]: collapsed,
       })}
