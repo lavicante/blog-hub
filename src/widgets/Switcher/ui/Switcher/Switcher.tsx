@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
 import { SwitcherButton } from 'shared/SwitcherButton/ui/SwitcherButton';
 import { ThemeButton } from 'shared/ThemeButton/ui/ThemeButton';
@@ -23,7 +24,9 @@ export const Switcher = ({ className }: SwitcherProps) => {
         [classes.collapsed]: collapsed,
       })}
     >
-      <button onClick={onCollapsed}>{t('toggle')}</button>
+      <Button data-testid='sidebar-toggle' onClick={onCollapsed}>
+        {t('toggle')}
+      </Button>
       <div className={classes.switchers}>
         <ThemeButton />
         <SwitcherButton />
