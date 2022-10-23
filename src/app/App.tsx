@@ -5,7 +5,7 @@ import { AppRouter } from 'app/routers';
 import { Suspense } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import { Navbar } from 'widgets/Navbar';
-import { Switcher } from 'widgets/Switcher';
+import { Sidebar } from 'widgets/Switcher';
 
 const App = () => {
   const { theme } = useTheme();
@@ -15,7 +15,7 @@ const App = () => {
       <Suspense fallback=''>
         <Navbar />
         <div className='content-page'>
-          <Switcher />
+          <Sidebar />
           <AppRouter />
         </div>
       </Suspense>

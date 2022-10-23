@@ -1,1 +1,1 @@
-export { Switcher } from './ui/Switcher/Switcher';
+export { Sidebar } from './ui/Sidebar/Sidebar';

@@ -5,13 +5,13 @@ import { classNames } from 'shared/lib/classNames';
 import { SwitcherButton } from 'shared/SwitcherButton/ui/SwitcherButton';
 import { ThemeButton } from 'shared/ThemeButton/ui/ThemeButton';
 
-import classes from './Switcher.module.scss';
+import classes from './Sidebar.module.scss';
 
-interface SwitcherProps {
+interface SidebarProps {
   className?: string;
 }
 
-export const Switcher = ({ className }: SwitcherProps) => {
+export const Sidebar = ({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const { t } = useTranslation();
 
