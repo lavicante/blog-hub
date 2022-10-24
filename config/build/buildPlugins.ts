@@ -9,7 +9,8 @@ export function BuildPlugins(
   paths: BuildPaths,
   options: BuildOptions
 ): webpack.WebpackPluginInstance[] {
-  return [
+  const { isDev } = options;
+  const plugins = [
     new HtmlWebpackPlugin({
       template: paths.html,
     }),
@@ -21,9 +22,16 @@ export function BuildPlugins(
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(options.isDev),
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new BundleAnalyzerPlugin({
-      openAnalyzer: false,
-    }),
   ];
+
+  if (isDev) {
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+      })
+    );
+  }
+
+  return plugins;
 }
