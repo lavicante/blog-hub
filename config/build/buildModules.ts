@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 
-import { BuildOptions } from './types/configs';
 import { buildCssLoaders } from './loaders/buildCssLoaders';
+import { BuildOptions } from './types/configs';
 
 export function BuildModules(options: BuildOptions): webpack.ModuleOptions {
   const svgLoader = {

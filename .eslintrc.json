@@ -52,6 +52,7 @@
         "simple-import-sort/imports": "error",
         "simple-import-sort/exports": "error",
         "react/button-has-type": "off",
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "no-param-reassign": "off"
     }
 }
