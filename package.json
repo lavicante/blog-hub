@@ -11,12 +11,13 @@
     "lint:fix": "eslint \"**/*.{ts, tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
-    "unit": "jest --config ./config/jest/jest.config.ts",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:unit": "jest --config ./config/jest/jest.config.ts",
+    "test:loki": "npx loki test",
+    "test:loki:approve": "npx loki approve",
     "prepare": "husky install",
     "prettier:code": "prettier --write \"*/**/*.{js,ts,jsx,tsx}\"",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
-    "build-storybook": "build-storybook"
+    "storybook:build": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -73,6 +74,7 @@
     "jest-environment-jsdom-sixteen": "^2.0.0",
     "jest-environment-node": "^29.1.2",
     "lint-staged": "^13.0.3",
+    "loki": "^0.30.3",
     "mini-css-extract-plugin": "^2.6.1",
     "prettier": "^2.7.1",
     "sass": "^1.54.9",
@@ -99,5 +101,20 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^11.18.6",
     "react-router-dom": "^6.4.0"
+  },
+  "loki": {
+    "configurations": {
+      "chrome.laptop": {
+        "target": "chrome.app",
+        "width": 1366,
+        "height": 768,
+        "deviceScaleFactor": 1,
+        "mobile": false
+      },
+      "chrome.iphone7": {
+        "target": "chrome.app",
+        "preset": "iPhone 7"
+      }
+    }
   }
 }
