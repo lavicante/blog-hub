@@ -14,6 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof Main>;
 
+// @ts-ignore
 const Template: ComponentStory<typeof Main> = (args) => <Main {...args} />;
 
 export const MainPage = Template.bind({});

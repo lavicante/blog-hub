@@ -13,6 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof About>;
 
+// @ts-ignore
 const Template: ComponentStory<typeof About> = (args) => <About {...args} />;
 
 export const AboutPage = Template.bind({});
