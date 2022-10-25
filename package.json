@@ -13,11 +13,12 @@
     "lint:scss:fix": "npx stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:loki": "npx loki test",
+    "test:loki:ci": "npm run storybook:build && loki --requireReference --reactUri file:./storybook-static",
     "test:loki:approve": "npx loki approve",
     "prepare": "husky install",
     "prettier:code": "prettier --write \"*/**/*.{js,ts,jsx,tsx}\"",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook -c ./config/storybook"
   },
   "repository": {
     "type": "git",
