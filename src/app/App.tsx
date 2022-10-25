@@ -9,7 +9,6 @@ import { Sidebar } from 'widgets/Switcher';
 
 const App = () => {
   const { theme } = useTheme();
-  console.log('test lints');
 
   return (
     <div className={classNames('app', [theme])}>
