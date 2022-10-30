@@ -31,6 +31,12 @@ Clean.args = {
 };
 Clean.decorators = [ThemeDecorator(Theme.LIGHT)];
 
+export const CleanInverted = Template.bind({});
+CleanInverted.args = {
+  children: 'TEST',
+  variant: VariantButton.CLEAR_INVERTED,
+};
+
 export const CleanDark = Template.bind({});
 CleanDark.args = {
   children: 'TEST',
