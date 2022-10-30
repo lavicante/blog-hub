@@ -4,14 +4,15 @@
     padding: 10px 15px;
 }
 
-.clear, .clearInverted {
+.clear,
+.clearInverted {
     padding: 0;
     margin: 0;
     border: none;
     background: transparent;
 }
 
-.clearInverted{
+.clearInverted {
     color: var(--invert-primary-color);
 }
 
