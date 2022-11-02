@@ -17,9 +17,13 @@ export const Counter = () => {
 
   return (
     <div>
-      <h1>{counterValue}</h1>
-      <Button onClick={inc}>inc</Button>
-      <Button onClick={dec}>dec</Button>
+      <h1 data-testid='counter'>{counterValue}</h1>
+      <Button data-testid='counter-btn-inc' onClick={inc}>
+        inc
+      </Button>
+      <Button data-testid='counter-btn-dec' onClick={dec}>
+        dec
+      </Button>
     </div>
   );
 };
