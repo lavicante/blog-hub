@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import {
   LOCAL_STORAGE_THEME_KEY,
   Theme,
@@ -11,6 +13,10 @@ interface IUseThemeResult {
 
 export const useTheme = (): IUseThemeResult => {
   const { theme, setTheme } = useThemeContext();
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
 
   const changeTheme = () => {
     const nextTheme = theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
