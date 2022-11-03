@@ -18,7 +18,8 @@
     "prepare": "husky install",
     "prettier:code": "prettier --write \"*/**/*.{js,ts,jsx,tsx}\"",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
-    "storybook:build": "build-storybook -c ./config/storybook"
+    "storybook:build": "build-storybook -c ./config/storybook",
+    "server": "json-server --watch ./json-server/db.json --port 8000"
   },
   "repository": {
     "type": "git",
@@ -76,6 +77,7 @@
     "jest-environment-jsdom": "^29.1.2",
     "jest-environment-jsdom-sixteen": "^2.0.0",
     "jest-environment-node": "^29.1.2",
+    "json-server": "^0.17.1",
     "lint-staged": "^13.0.3",
     "loki": "^0.30.3",
     "mini-css-extract-plugin": "^2.6.1",
