@@ -1,4 +1,11 @@
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  lazy,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { classNames } from 'shared/lib/classNames';
 import { Portal } from 'shared/Portal/Portal';
 
@@ -15,10 +22,11 @@ const ANIMATION_DELAY = 300;
 
 export const Modal = ({ className, children, onClose, isOpen }: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
 
   const mods = {
-    [classes.opened]: isOpen,
+    [classes.opened]: isOpening,
     [classes.isClosing]: isClosing,
   };
 
@@ -47,14 +55,22 @@ export const Modal = ({ className, children, onClose, isOpen }: ModalProps) => {
 
   useEffect(() => {
     if (isOpen) {
+      timeRef.current = setTimeout(() => {
+        setIsOpening(true);
+      }, 0);
       window.addEventListener('keydown', onKeyDown);
     }
 
     return () => {
+      setIsOpening(false);
       clearTimeout(timeRef.current);
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
+
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <Portal>
