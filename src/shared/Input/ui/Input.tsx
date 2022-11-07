@@ -43,6 +43,7 @@ export const Input = memo(
 
     return (
       <input
+        type={type}
         ref={inputRef}
         value={value}
         onChange={onChangeHandler}
