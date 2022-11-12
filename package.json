@@ -19,7 +19,7 @@
     "prettier:code": "prettier --write \"*/**/*.{js,ts,jsx,tsx}\"",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "build-storybook -c ./config/storybook",
-    "server": "json-server --watch ./json-server/db.json --port 8000"
+    "server": "node ./json-server/index.js --port 8000"
   },
   "repository": {
     "type": "git",

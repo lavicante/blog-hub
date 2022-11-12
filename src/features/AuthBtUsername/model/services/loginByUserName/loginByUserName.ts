@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import i18n from 'app/i18n/i18n';
 import axios from 'axios';
-import { User } from 'entities/User';
+import { User, userActions } from 'entities/User';
+import { USER_LOCAL_STORAGE_KEY } from 'shared/constants/localSotorage';
 
 interface loginByUserNameProps {
   username: string;
@@ -11,7 +13,7 @@ export const loginByUserName = createAsyncThunk<
   User,
   loginByUserNameProps,
   { rejectValue: string }
->('login/loginByUserName', async (loginData, { rejectWithValue }) => {
+>('login/loginByUserName', async (loginData, { rejectWithValue, dispatch }) => {
   try {
     const response = await axios.post<User>(
       'http://localhost:8000/login',
@@ -21,9 +23,10 @@ export const loginByUserName = createAsyncThunk<
     if (!response.data) {
       throw new Error();
     }
+    dispatch(userActions.setAuthData(response.data));
 
     return response.data;
   } catch (e) {
-    return rejectWithValue(e.message);
+    return rejectWithValue(i18n.t('Вы ввели неправильный логин или пароль'));
   }
 });

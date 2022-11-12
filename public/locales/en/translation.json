@@ -9,5 +9,8 @@
   "Перезагрузить": "Reload",
   "Главная": "Main",
   "О нас": "About",
-  "Войти": "Sign in"
+  "Войти": "Sign in",
+  "Вы ввели неправильный логин или пароль": "You have entered an incorrect username or password",
+  "Выйти": "Log out",
+  "Авторизация": "Auth"
 }

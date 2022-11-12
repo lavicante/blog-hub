@@ -21,10 +21,7 @@ interface LoginFormProps {
 export const LoginForm = memo(({ className }: LoginFormProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { error } = useSelector(getLoginData);
-  const username = useSelector(getUserName);
-  const password = useSelector(getPassword);
-  const isLoading = useSelector(getLoading);
+  const { error, username, password, isLoading } = useSelector(getLoginData);
 
   const userNameHandler = useCallback(
     (value: string) => {
@@ -41,6 +38,7 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
   );
 
   const onLoginHandler = useCallback(() => {
+    // TODO: сделать типизацию экшена
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     dispatch(loginByUserName({ username, password }));
@@ -53,7 +51,7 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
         variant={TextVarianEnum.PRIMARY}
         className={classes.heading}
       >
-        Авторизация
+        {t('Авторизация')}
       </Text>
 
       {error && (
@@ -76,7 +74,9 @@ export const LoginForm = memo(({ className }: LoginFormProps) => {
         onCange={passwordHandler}
         type='password'
       />
-      <Button onClick={onLoginHandler}>{t('Войти')}</Button>
+      <Button disabled={isLoading} onClick={onLoginHandler}>
+        {t('Войти')}
+      </Button>
     </div>
   );
 });
