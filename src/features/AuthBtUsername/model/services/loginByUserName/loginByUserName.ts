@@ -27,6 +27,6 @@ export const loginByUserName = createAsyncThunk<
 
     return response.data;
   } catch (e) {
-    return rejectWithValue(i18n.t('Вы ввели неправильный логин или пароль'));
+    return rejectWithValue('Вы ввели неправильный логин или пароль');
   }
 });
