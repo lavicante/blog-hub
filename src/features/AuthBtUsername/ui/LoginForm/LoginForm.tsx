@@ -1,9 +1,7 @@
-import { ReduxStoreWithManager } from 'app/providers/StoreProvider';
-import { getLoginData } from 'features/AuthBtUsername/model/selectors/getLoginData/getLoginData';
 import { getLoginError } from 'features/AuthBtUsername/model/selectors/getLoginError/getLoginError';
-import { memo, useCallback, useEffect } from 'react';
+import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector, useStore } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Button } from 'shared/Button/Button';
 import {
   ReducersList,
@@ -11,6 +9,7 @@ import {
 } from 'shared/hooks/useDynamicReducer/useDynamicReducer';
 import { Input } from 'shared/Input/ui/Input';
 import { classNames } from 'shared/lib/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
 
 import { getLoading } from '../../model/selectors/getLoading/getLoading';
@@ -21,6 +20,7 @@ import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import classes from './LoginForm.module.scss';
 
 interface LoginFormProps {
+  onSuccess: () => void;
   className?: string;
 }
 
@@ -28,9 +28,9 @@ const initReducers: ReducersList = {
   login: loginReducer,
 };
 
-const LoginForm = memo(({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const username = useSelector(getUserName);
   const password = useSelector(getPassword);
   const isLoading = useSelector(getLoading);
@@ -52,12 +52,13 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     [dispatch]
   );
 
-  const onLoginHandler = useCallback(() => {
-    // TODO: сделать типизацию экшена
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    dispatch(loginByUserName({ username, password }));
-  }, [dispatch, username, password]);
+  const onLoginHandler = useCallback(async () => {
+    const { meta } = await dispatch(loginByUserName({ username, password }));
+
+    if (meta.requestStatus === 'fulfilled') {
+      onSuccess();
+    }
+  }, [dispatch, username, password, onSuccess]);
 
   return (
     <div className={classNames(classes.LoginForm, [className])}>
