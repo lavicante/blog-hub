@@ -25,5 +25,14 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "firstname": "Кемал",
+    "lastname": "Демирель",
+    "age": 26,
+    "country": "Russia",
+    "currency": "RUB",
+    "city": "Moscow",
+    "username": "demirel",
+    "avatar": "https://sun9-58.userapi.com/impg/eDpp6z0KM1qZJPPv0Akmse1I8J61y0fwcWKvmA/lucwZpkc2_c.jpg?size=1440x2160&quality=95&sign=39dc5a60c3e97d845749e6e56934d55d&type=album"
+  }
 }

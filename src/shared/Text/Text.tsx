@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames';
 
 import classes from './Text.module.scss';
@@ -18,7 +18,7 @@ interface TextProps {
   className?: string;
 }
 
-export const Text = (props: TextProps) => {
+export const Text = memo((props: TextProps) => {
   const { tag, variant, className, children } = props;
 
   switch (tag) {
@@ -73,4 +73,4 @@ export const Text = (props: TextProps) => {
         </span>
       );
   }
-};
+});

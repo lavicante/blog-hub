@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 
@@ -7,7 +8,7 @@ interface NotFoundProps {
   className?: string;
 }
 
-export const NotFound = ({ className }: NotFoundProps) => {
+export const NotFound = memo(({ className }: NotFoundProps) => {
   const { t } = useTranslation();
 
   return (
@@ -15,4 +16,4 @@ export const NotFound = ({ className }: NotFoundProps) => {
       {t('Страница не найдена')}
     </div>
   );
-};
+});

@@ -1,13 +1,10 @@
-import { AppPath } from 'app/routers/config/routerConfig';
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { AppLInk, AppLinkTheme } from 'shared/AppLink/ui/AppLInk';
-import AboutIcon from 'shared/assets/icons/about.svg';
-import MainIcon from 'shared/assets/icons/main.svg';
+import React, { memo, useState } from 'react';
 import { Button, SizeButton, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
 import { SwitcherButton } from 'shared/SwitcherButton/ui/SwitcherButton';
 import { ThemeButton } from 'shared/ThemeButton/ui/ThemeButton';
+import { sidebarItems } from 'widgets/Switcher/model/items';
+import { SidebarItem } from 'widgets/Switcher/ui/SidebarItem/SidebarItem';
 
 import classes from './Sidebar.module.scss';
 
@@ -15,9 +12,8 @@ interface SidebarProps {
   className?: string;
 }
 
-export const Sidebar = ({ className }: SidebarProps) => {
+export const Sidebar = memo(({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
-  const { t } = useTranslation();
 
   const onCollapsed = () => setCollapsed((prev) => !prev);
 
@@ -29,22 +25,9 @@ export const Sidebar = ({ className }: SidebarProps) => {
       })}
     >
       <div className={classes.links}>
-        <AppLInk
-          to={AppPath.main}
-          theme={AppLinkTheme.SECONDARY}
-          className={classes.item}
-        >
-          <MainIcon />
-          <span className={classes.link}>{t('Главная')}</span>
-        </AppLInk>
-        <AppLInk
-          to={AppPath.about}
-          theme={AppLinkTheme.SECONDARY}
-          className={classes.item}
-        >
-          <AboutIcon />
-          <span className={classes.link}>{t('О нас')}</span>
-        </AppLInk>
+        {sidebarItems.map((item) => (
+          <SidebarItem key={item.path} item={item} collapsed={collapsed} />
+        ))}
       </div>
       <Button
         data-testid='sidebar-toggle'
@@ -62,4 +45,4 @@ export const Sidebar = ({ className }: SidebarProps) => {
       </div>
     </div>
   );
-};
+});

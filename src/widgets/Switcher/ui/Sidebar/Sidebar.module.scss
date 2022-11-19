@@ -29,15 +29,6 @@
     flex-direction: column;
 }
 
-.item {
-    display: flex;
-    align-items: center;
-
-    svg {
-        margin-right: 15px;
-        fill: var(--invert-secondary-color);
-    }
-}
 
 .collapsed {
     width: var(--switcher-width-collapsed);

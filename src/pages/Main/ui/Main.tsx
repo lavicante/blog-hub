@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/Input/ui/Input';
 
-const Main = () => {
-  const { t, i18n } = useTranslation('main');
+const Main = memo(() => {
+  const { t } = useTranslation('main');
 
   const [value, setValue] = useState('');
 
@@ -17,6 +17,6 @@ const Main = () => {
       <Input value={value} onCange={onChange} />
     </>
   );
-};
+});
 
 export default Main;

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
@@ -6,7 +7,7 @@ interface SwitcherButtonProps {
   className?: string;
 }
 
-export const SwitcherButton = ({ className }: SwitcherButtonProps) => {
+export const SwitcherButton = memo(({ className }: SwitcherButtonProps) => {
   const { t, i18n } = useTranslation();
 
   const toggle = () => {
@@ -22,4 +23,4 @@ export const SwitcherButton = ({ className }: SwitcherButtonProps) => {
       {t('Русский')}
     </Button>
   );
-};
+});
