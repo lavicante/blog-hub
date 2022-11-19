@@ -10,14 +10,14 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './app/App';
 
 render(
-  <StoreProvider>
-    <ErrorBoundary>
-      <BrowserRouter>
+  <ErrorBoundary>
+    <BrowserRouter>
+      <StoreProvider>
         <ThemeProvider>
           <App />
         </ThemeProvider>
-      </BrowserRouter>
-    </ErrorBoundary>
-  </StoreProvider>,
+      </StoreProvider>
+    </BrowserRouter>
+  </ErrorBoundary>,
   document.getElementById('root')
 );

@@ -9,7 +9,7 @@ export function BuildPlugins(
   paths: BuildPaths,
   options: BuildOptions
 ): webpack.WebpackPluginInstance[] {
-  const { isDev } = options;
+  const { isDev, apiUrl } = options;
   const plugins = [
     new HtmlWebpackPlugin({
       template: paths.html,
@@ -20,7 +20,8 @@ export function BuildPlugins(
       chunkFilename: 'css/[name].[contenthash].css',
     }),
     new webpack.DefinePlugin({
-      __IS_DEV__: JSON.stringify(options.isDev),
+      __IS_DEV__: JSON.stringify(isDev),
+      __API__: JSON.stringify(apiUrl),
     }),
   ];
 
