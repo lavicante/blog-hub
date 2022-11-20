@@ -1,8 +1,9 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-
 import { Theme } from 'app/providers/ThemeProvider';
-import { Navbar } from './Navbar';
+import { StoreDecorator } from 'app/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'app/storybook/ThemeDecorator/ThemeDecorator';
+
+import { Navbar } from './Navbar';
 
 export default {
   title: 'widget/Navbar',
@@ -10,6 +11,11 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
+  decorators: [
+    StoreDecorator({
+      login: { username: '123', password: 'aaa' },
+    }),
+  ],
 } as ComponentMeta<typeof Navbar>;
 
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;

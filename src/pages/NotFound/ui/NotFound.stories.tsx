@@ -1,12 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeDecorator } from 'app/storybook/ThemeDecorator/ThemeDecorator';
 import React from 'react';
 
 import { NotFound } from './NotFound';
-import { ThemeDecorator } from 'app/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
 
 export default {
-  title: 'pages/About',
+  title: 'pages/NotFound',
   component: NotFound,
 
   argTypes: {

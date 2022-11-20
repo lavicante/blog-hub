@@ -1,12 +1,12 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Theme } from 'app/providers/ThemeProvider';
+import { ThemeDecorator } from 'app/storybook/ThemeDecorator/ThemeDecorator';
 import React from 'react';
 
 import Main from './Main';
-import { ThemeDecorator } from 'app/storybook/ThemeDecorator/ThemeDecorator';
-import { Theme } from 'app/providers/ThemeProvider';
 
 export default {
-  title: 'pages/About',
+  title: 'pages/Main',
   component: Main,
 
   argTypes: {
@@ -14,6 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof Main>;
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const Template: ComponentStory<typeof Main> = (args) => <Main {...args} />;
 

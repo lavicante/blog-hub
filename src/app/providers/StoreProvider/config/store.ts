@@ -1,6 +1,5 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { To } from '@remix-run/router';
-import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 import { NavigateOptions } from 'react-router/dist/lib/context';
 import { $api } from 'shared/lib/api/api';
@@ -13,7 +12,6 @@ export function createReduxStore(
   navigate?: (to: To, options?: NavigateOptions) => void
 ) {
   const reducer: ReducersMapObject<StateSchema> = {
-    counter: counterReducer,
     user: userReducer,
   };
 

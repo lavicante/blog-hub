@@ -1,29 +1,31 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
+import { StoreDecorator } from 'app/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'app/storybook/ThemeDecorator/ThemeDecorator';
-import React from 'react';
+import { profileReducer } from 'entities/Profile';
+import {
+  ReducersList,
+  useDynamicReducer,
+} from 'shared/hooks/useDynamicReducer/useDynamicReducer';
 
 import Profile from './Profile';
 
 export default {
-  title: 'pages/About',
+  title: 'pages/Profile',
   component: Profile,
+  decorators: [
+    StoreDecorator({
+      login: { username: '123', password: 'asd', error: 'ERROR' },
+      profile: { data: { username: 'Kemal' } },
+    }),
+    ThemeDecorator(Theme.DARK),
+  ],
+};
 
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-} as ComponentMeta<typeof Profile>;
+export const Primary = () => {
+  const reducers: ReducersList = {
+    profile: profileReducer,
+  };
+  useDynamicReducer(reducers);
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const Template: ComponentStory<typeof Profile> = (args) => (
-  <Profile {...args} />
-);
-
-export const ProfilePage = Template.bind({});
-
-ProfilePage.args = {};
-
-export const ProfilePageDark = Template.bind({});
-ProfilePageDark.args = {};
-ProfilePageDark.decorators = [ThemeDecorator(Theme.DARK)];
+  return <Profile />;
+};
