@@ -16,28 +16,28 @@ describe('loginByUsername', () => {
       username: 'admin',
       id: 1,
     };
-    mockedAxios.post.mockResolvedValue({ data: user });
+    mockedAxios.post.mockReturnValue(Promise.resolve({ data: user }));
 
     const thunk = new TestAsyncThunk(loginByUserName);
     const result = await thunk.callThunk({
       username: 'admin',
       password: '123',
     });
-    expect(mockedAxios.post).toHaveBeenCalled();
+    expect(mockedAxios.post).toBeCalled();
     expect(result.meta.requestStatus).toBe('fulfilled');
     expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(user));
     expect(thunk.dispatch).toHaveBeenCalledTimes(3);
   });
 
   test('reject', async () => {
-    mockedAxios.post.mockResolvedValue({ status: 403 });
+    mockedAxios.post.mockReturnValue(Promise.resolve({ status: 403 }));
 
     const thunk = new TestAsyncThunk(loginByUserName);
     const result = await thunk.callThunk({
       username: 'admin',
       password: '123',
     });
-    expect(mockedAxios.post).toHaveBeenCalled();
+    expect(mockedAxios.post).toBeCalled();
     expect(result.meta.requestStatus).toBe('rejected');
     expect(result.payload).toBe('Вы ввели неправильный логин или пароль');
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
