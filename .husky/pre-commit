@@ -3,4 +3,5 @@
 
 npm run lint:fix
 npm run lint:scss:fix
+npm run prettier:code
 
