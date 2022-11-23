@@ -19,7 +19,7 @@ export const AppLInk = ({
   className,
   children,
   to,
-  theme,
+  theme = AppLinkTheme.PRIMARY,
   ...otherProps
 }: AppLInkProps) => (
   <Link

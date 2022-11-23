@@ -1,4 +1,3 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
 import i18nTest from 'app/i18n/i18nTest';
 import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';

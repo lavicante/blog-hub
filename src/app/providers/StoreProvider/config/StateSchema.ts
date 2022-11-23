@@ -2,8 +2,10 @@ import {
   AnyAction,
   CombinedState,
   EnhancedStore,
+  MiddlewareArray,
   Reducer,
   ReducersMapObject,
+  ThunkMiddleware,
 } from '@reduxjs/toolkit';
 import { To } from '@remix-run/router';
 import { AxiosInstance } from 'axios';
@@ -33,10 +35,18 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ExtraArgs {
   api: AxiosInstance;
-  navigate: (to: To, options?: NavigateOptions) => void;
+  navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {
   rejectValue: T;
   extra: ExtraArgs;
 }
+
+export type StoreType = EnhancedStore<
+  CombinedState<StateSchema>,
+  AnyAction,
+  MiddlewareArray<
+    [ThunkMiddleware<CombinedState<StateSchema>, AnyAction, ExtraArgs>]
+  >
+>;

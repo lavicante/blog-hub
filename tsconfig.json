@@ -12,7 +12,8 @@
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
   },
   "ts-node": {
     "compilerOptions": {

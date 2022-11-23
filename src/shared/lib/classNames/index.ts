@@ -1,16 +1,10 @@
-type Mode = Record<string, boolean | string>;
+export type Mode = Record<string, boolean | string | undefined>;
 
 export const classNames = (
   cls: string,
-  additional?: string[],
+  additional?: Array<string | undefined>,
   mods?: Mode
 ): string => {
-  if (!additional && !mods) return cls;
-
-  if (additional && !mods) {
-    return [cls, ...additional].join(' ');
-  }
-
   if (!additional && mods) {
     return [
       cls,
@@ -20,11 +14,21 @@ export const classNames = (
     ].join(' ');
   }
 
-  return [
-    cls,
-    ...additional,
-    ...Object.entries(mods)
-      .filter(([className, value]) => Boolean(value))
-      .map(([className]) => className),
-  ].join(' ');
+  if (additional && !mods) {
+    return [cls, ...additional].filter(Boolean).join(' ');
+  }
+
+  if (additional && mods) {
+    return [
+      cls,
+      ...additional,
+      ...Object.entries(mods)
+        .filter(([className, value]) => Boolean(value))
+        .map(([className]) => className),
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  return cls;
 };

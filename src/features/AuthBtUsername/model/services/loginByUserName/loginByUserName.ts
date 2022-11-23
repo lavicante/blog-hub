@@ -22,7 +22,7 @@ export const loginByUserName = createAsyncThunk<
         throw new Error();
       }
       dispatch(userActions.setAuthData(response.data));
-      navigate('/about');
+      navigate?.('/about');
       return response.data;
     } catch (e) {
       return rejectWithValue('error');

@@ -37,7 +37,7 @@ export const Input = memo(
 
     useEffect(() => {
       if (isAutoFocus) {
-        inputRef.current.focus();
+        inputRef.current?.focus();
       }
     }, [isAutoFocus]);
 
