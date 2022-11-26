@@ -1,7 +1,7 @@
 import { Theme } from 'app/providers/ThemeProvider';
 import { StoreDecorator } from 'app/storybook/StoreDecorator/StoreDecorator';
 import { ThemeDecorator } from 'app/storybook/ThemeDecorator/ThemeDecorator';
-import { profileReducer } from 'entities/Profile';
+import { profileReducer } from 'features/EditableProfileCard';
 import {
   ReducersList,
   useDynamicReducer,

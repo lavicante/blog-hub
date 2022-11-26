@@ -1,47 +1,43 @@
+import { Profile } from 'features/EditableProfileCard';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
 
-import { getErrorProfileData } from '../model/selectors/getErrorProfileData/getErrorProfileData';
-import { getLoadingProfileData } from '../model/selectors/getLoadingProfileData/getLoadingProfileData';
-import { getProfileData } from '../model/selectors/getProfileData/getProfileData';
 import classes from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
   className?: string;
+  data?: Profile;
 }
 
-export const ProfileCard = ({ className }: ProfileCardProps) => {
-  const { t } = useTranslation();
-
-  const data = useSelector(getProfileData);
-  const loading = useSelector(getLoadingProfileData);
-  const error = useSelector(getErrorProfileData);
-
-  if (loading) {
-    return (
-      <Text tag='span' variant={TextVarianEnum.SUCCESS}>
-        Загрузка профиля...
-      </Text>
-    );
-  }
-
+export const ProfileCard = memo(({ className, data }: ProfileCardProps) => {
+  const { t } = useTranslation('profile');
   return (
     <div className={classNames(classes.ProfileCard, [className])}>
-      <div className={classes.header}>
-        <Text tag='h1' variant={TextVarianEnum.PRIMARY}>
-          {t('Профиль')}
-        </Text>
-        <Button variant={VariantButton.OUTLINE}>
-          {t('Редактировать профиль')}
-        </Button>
+      <Text
+        className={classes.text}
+        variant={TextVarianEnum.PRIMARY}
+        tag='h1'
+        align='center'
+      >
+        {t('Профиль')}
+      </Text>
+
+      <div className={classes.profile_data}>
+        <div className={classes.profile_avatar}>
+          <img src={data?.avatar} alt={data?.username} />
+        </div>
+        <ul className={classes.profile_list}>
+          <li>Имя: {data?.firstname}</li>
+          <li>Фамилия: {data?.lastname}</li>
+          <li>Username: {data?.username}</li>
+          <li>Возраст: {data?.age}</li>
+          <li>Страна: {data?.country}</li>
+          <li>Город: {data?.city}</li>
+          <li>Валюта: {data?.currency}</li>
+        </ul>
       </div>
-      <ul>
-        <li>{data?.firstname}</li>
-        <li>{data?.lastname}</li>
-      </ul>
     </div>
   );
-};
+});

@@ -1,4 +1,8 @@
-import { fetchProfile, ProfileCard, profileReducer } from 'entities/Profile';
+import {
+  EditableProfileCard,
+  fetchProfile,
+  profileReducer,
+} from 'features/EditableProfileCard';
 import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -28,7 +32,7 @@ const Profile = memo(({ className }: ProfileProps) => {
 
   return (
     <div className={classNames('', [className])}>
-      <ProfileCard />
+      <EditableProfileCard />
     </div>
   );
 });

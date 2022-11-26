@@ -9,9 +9,9 @@ import {
 } from '@reduxjs/toolkit';
 import { To } from '@remix-run/router';
 import { AxiosInstance } from 'axios';
-import { ProfileSchema } from 'entities/Profile';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthBtUsername';
+import { ProfileSchema } from 'features/EditableProfileCard';
 import { NavigateOptions } from 'react-router/dist/lib/context';
 
 export interface StateSchema {
