@@ -24,6 +24,7 @@ export const EditableProfileCard = ({
   className,
 }: EditableProfileCardProps) => {
   const [open, setOpen] = useState(false);
+  const [isClosedFromBodyModal, setIsClosedFromBodyModal] = useState(false);
   const { t } = useTranslation('profile');
 
   const data = useSelector(getProfileData);
@@ -35,6 +36,7 @@ export const EditableProfileCard = ({
   }, []);
   const handleClose = useCallback(() => {
     setOpen(false);
+    setIsClosedFromBodyModal(false);
   }, []);
 
   if (isLoading) {
@@ -57,19 +59,25 @@ export const EditableProfileCard = ({
 
   return (
     <div className={classNames(classes.EditableProfileCard, [className])}>
-      <div className={classes.ProfileCardHeader}>
-        <Button
-          className={classes.btn}
-          onClick={handleOpen}
-          variant={VariantButton.OUTLINE}
-        >
-          {t('Редактировать')}
-        </Button>
+      <div className={classes.EditableProfileCard_container}>
+        <div className={classes.ProfileCardHeader}>
+          <Button
+            className={classes.btn}
+            onClick={handleOpen}
+            variant={VariantButton.OUTLINE}
+          >
+            {t('Редактировать')}
+          </Button>
+        </div>
+        <ProfileCard data={data} />
       </div>
-      <ProfileCard data={data} />
-      <Modal isOpen={open} onClose={handleClose}>
+      <Modal
+        isOpen={open}
+        onClose={handleClose}
+        isClosedFromBodyModal={isClosedFromBodyModal}
+      >
         <Suspense fallback={<Loader />}>
-          <EditableProfileModal />
+          <EditableProfileModal onClose={setIsClosedFromBodyModal} />
         </Suspense>
       </Modal>
     </div>

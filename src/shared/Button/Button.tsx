@@ -7,6 +7,8 @@ export enum VariantButton {
   CLEAR = 'clear',
   CLEAR_INVERTED = 'clearInverted',
   OUTLINE = 'outline',
+  OUTLINE_RED = 'outline_red',
+  OUTLINE_RED_INVERTED = 'outline_red_inverted',
   BACKGROUND = 'background',
   BACKGROUND_INVERTED = 'backgroundInverted',
 }

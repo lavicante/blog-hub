@@ -16,11 +16,18 @@ interface ModalProps {
   className?: string;
   isOpen?: boolean;
   onClose?: () => void;
+  isClosedFromBodyModal?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
 
-export const Modal = ({ className, children, onClose, isOpen }: ModalProps) => {
+export const Modal = ({
+  className,
+  children,
+  onClose,
+  isOpen,
+  isClosedFromBodyModal,
+}: ModalProps) => {
   const [isClosing, setIsClosing] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
@@ -52,6 +59,12 @@ export const Modal = ({ className, children, onClose, isOpen }: ModalProps) => {
     },
     [handleClose]
   );
+
+  useEffect(() => {
+    if (isClosedFromBodyModal) {
+      handleClose();
+    }
+  }, [isClosedFromBodyModal]);
 
   useEffect(() => {
     if (isOpen) {

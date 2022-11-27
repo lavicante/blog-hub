@@ -41,6 +41,7 @@ export interface ExtraArgs {
 export interface ThunkConfig<T> {
   rejectValue: T;
   extra: ExtraArgs;
+  state: StateSchema;
 }
 
 export type StoreType = EnhancedStore<
