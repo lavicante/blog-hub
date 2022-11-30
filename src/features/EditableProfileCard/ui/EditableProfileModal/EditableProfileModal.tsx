@@ -39,6 +39,10 @@ const EditableProfileModal = memo(
       dispatch(profileActions.updateProfile({ age: Number(value) }));
     };
 
+    const changeAvatar = (value: string) => {
+      dispatch(profileActions.updateProfile({ avatar: value }));
+    };
+
     const onSave = async () => {
       const {
         meta: { requestStatus },
@@ -110,6 +114,17 @@ const EditableProfileModal = memo(
             id='age'
             value={profileData?.age || ''}
             type='number'
+          />
+        </label>
+
+        <label htmlFor='avatar' className={classes.EditableProfileModal_label}>
+          <Text tag='span' variant={TextVarianEnum.PRIMARY}>
+            {t('Аватар')}
+          </Text>
+          <Input
+            onCange={changeAvatar}
+            id='avatar'
+            value={profileData?.avatar || ''}
           />
         </label>
 
