@@ -1,5 +1,8 @@
+import { Country } from 'entities/Country';
+import { CountrySelect } from 'entities/Country/ui/CountrySelect';
+import { Currency, CurrencySelect } from 'entities/Currency';
 import { profileActions } from 'features/EditableProfileCard';
-import { Dispatch, memo, SetStateAction } from 'react';
+import { Dispatch, memo, SetStateAction, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Button, VariantButton } from 'shared/Button/Button';
@@ -42,6 +45,24 @@ const EditableProfileModal = memo(
     const changeAvatar = (value: string) => {
       dispatch(profileActions.updateProfile({ avatar: value }));
     };
+
+    const changeCity = (value: string) => {
+      dispatch(profileActions.updateProfile({ city: value }));
+    };
+
+    const onChangeCurrency = useCallback(
+      (value: Currency) => {
+        dispatch(profileActions.updateProfile({ currency: value }));
+      },
+      [dispatch]
+    );
+
+    const onChangeCountry = useCallback(
+      (value: Country) => {
+        dispatch(profileActions.updateProfile({ country: value }));
+      },
+      [dispatch]
+    );
 
     const onSave = async () => {
       const {
@@ -127,6 +148,29 @@ const EditableProfileModal = memo(
             value={profileData?.avatar || ''}
           />
         </label>
+
+        <label htmlFor='city' className={classes.EditableProfileModal_label}>
+          <Text tag='span' variant={TextVarianEnum.PRIMARY}>
+            {t('Город')}
+          </Text>
+          <Input
+            onCange={changeCity}
+            id='city'
+            value={profileData?.city || ''}
+          />
+        </label>
+
+        <CurrencySelect
+          className={classes.EditableProfileModal_select}
+          value={profileData?.currency || ''}
+          onChange={onChangeCurrency}
+        />
+
+        <CountrySelect
+          className={classes.EditableProfileModal_select}
+          value={profileData?.country || ''}
+          onChange={onChangeCountry}
+        />
 
         <div className={classes.EditableProfileModal_btn_container}>
           <Button onClick={onSave}>{t('Сохранить')}</Button>
