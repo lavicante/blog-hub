@@ -7,6 +7,7 @@ import { Profile, ProfileSchema } from '../types/profile';
 const initialState: ProfileSchema = {
   data: undefined,
   error: undefined,
+  validateErrores: undefined,
   isLoading: false,
   readonly: true,
 };
@@ -36,13 +37,13 @@ export const profileSlice = createSlice({
       state.error = action.payload;
     });
     builder.addCase(updateProfile.fulfilled, (state, action) => {
-      state.error = undefined;
+      state.validateErrores = undefined;
       state.isLoading = false;
       state.data = action.payload;
     });
     builder.addCase(updateProfile.rejected, (state, action) => {
       state.isLoading = false;
-      state.error = action.payload;
+      state.validateErrores = action.payload;
     });
   },
 });

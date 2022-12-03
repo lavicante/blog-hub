@@ -2,7 +2,9 @@ import { Country } from 'entities/Country';
 import { CountrySelect } from 'entities/Country/ui/CountrySelect';
 import { Currency, CurrencySelect } from 'entities/Currency';
 import { profileActions } from 'features/EditableProfileCard';
-import { Dispatch, memo, SetStateAction, useCallback } from 'react';
+import { getValidateErrors } from 'features/EditableProfileCard/model/selectors/getValidateErrors/getValidateErrors';
+import { Dispatch, memo, SetStateAction, useCallback, useMemo } from 'react';
+import { Simulate } from 'react-dom/test-utils';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Button, VariantButton } from 'shared/Button/Button';
@@ -14,6 +16,8 @@ import { Text, TextVarianEnum } from 'shared/Text/Text';
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateProfile } from '../../model/services/updateProfile/updateProfile';
 import classes from './EditableProfileModal.module.scss';
+import error = Simulate.error;
+import { ValidationErrors } from 'features/EditableProfileCard/model/types/profile';
 
 interface EditableProfileModalProps {
   className?: string;
@@ -24,7 +28,23 @@ const EditableProfileModal = memo(
   ({ className, onClose }: EditableProfileModalProps) => {
     const { t } = useTranslation('profile');
     const profileData = useSelector(getProfileData);
+    const validateErrors = useSelector(getValidateErrors);
     const dispatch = useAppDispatch();
+
+    const validateErrorsMap = useMemo(
+      () => ({
+        [ValidationErrors.SERVER_ERROR]: t(
+          'Ошибка сервера. Попробуйте перезагрузить страницу'
+        ),
+        [ValidationErrors.INCORECT_CITY]: t(
+          'Введите город. Не менее 3-ёх символов'
+        ),
+        [ValidationErrors.INCORECT_AGE]: t('Некорректный возраст'),
+        [ValidationErrors.INCORECT_USER_NAME]: t('Введите username'),
+        [ValidationErrors.INCORECT_USER_DATA]: t('Введите имя и фамилию'),
+      }),
+      [t]
+    );
 
     const changeUsername = (value: string) => {
       dispatch(profileActions.updateProfile({ username: value }));
@@ -87,6 +107,12 @@ const EditableProfileModal = memo(
         >
           {t('Редактировать профиль')}
         </Text>
+        {validateErrors?.length > 0 &&
+          validateErrors.map((error) => (
+            <Text tag='span' variant={TextVarianEnum.ERROR}>
+              {validateErrorsMap[error]}
+            </Text>
+          ))}
         <label
           htmlFor='firstname'
           className={classes.EditableProfileModal_label}
