@@ -27,7 +27,9 @@ const Profile = memo(({ className }: ProfileProps) => {
   useDynamicReducer(reducers);
 
   useEffect(() => {
-    dispatch(fetchProfile());
+    if (__PROJECT__ === 'frontend') {
+      dispatch(fetchProfile());
+    }
   }, [dispatch]);
 
   return (

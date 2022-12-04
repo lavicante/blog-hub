@@ -29,19 +29,13 @@ export const ProfileCard = memo(({ className, data }: ProfileCardProps) => {
       </Text>
 
       <div className={classes.profile_data}>
-        {data?.avatar ? (
-          <div className={classes.profile_avatar}>
-            <Avatar
-              src={data?.avatar}
-              alt={data?.username || 'USER'}
-              size={150}
-            />
-          </div>
-        ) : (
-          <div className={classes.profile_avatar}>
-            <Avatar src={AVATAR_PLACEHOLDER} alt='USER' size={150} />
-          </div>
-        )}
+        <div className={classes.profile_avatar}>
+          <Avatar
+            src={data?.avatar || AVATAR_PLACEHOLDER}
+            alt={data?.username || 'USER'}
+            size={150}
+          />
+        </div>
 
         <ul className={classes.profile_list}>
           <li>Имя: {data?.firstname}</li>
