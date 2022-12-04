@@ -4,7 +4,6 @@ import { classNames } from 'shared/lib/classNames';
 import { Select, SelectOptions } from 'shared/Select/ui/Select';
 
 import { Currency } from '../model/types/currency';
-import classes from './Currency.module.scss';
 
 interface CurrencyProps {
   className?: string;
@@ -35,7 +34,7 @@ export const CurrencySelect = memo(
     );
 
     return (
-      <div className={classNames(classes.Currency, [className])}>
+      <div className={classNames('', [className])}>
         <Select
           options={options}
           value={value}
