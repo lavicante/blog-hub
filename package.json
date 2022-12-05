@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "start": "webpack serve --env port=3000",
+    "start": "concurrently \"webpack serve --env port=3000\" \"npm run server\"",
     "build": "webpack --env mode=production",
     "dev": "webpack --env mode=development",
     "lint": "eslint \"**/*.{ts, tsx}\"",
@@ -57,6 +57,7 @@
     "@typescript-eslint/parser": "^5.38.1",
     "babel-jest": "^29.1.2",
     "babel-loader": "^8.2.5",
+    "concurrently": "^7.6.0",
     "css-loader": "^6.7.1",
     "eslint": "8.22.0",
     "eslint-config-airbnb": "^19.0.4",

@@ -1,6 +1,6 @@
 .Button {
     cursor: pointer;
-    color: var(--invert-secondary-color);
+    color: var(--secondary-color);
     padding: 10px 15px;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .clearInverted {
-    color: var(--invert-secondary-color);
+    color: var(--secondary-color);
 }
 
 .outline {
@@ -31,7 +31,7 @@
 .outline_red_inverted {
     background: transparent;
     border: 1px solid var(--dark-red);
-    color: var(--invert-primary-color);
+    color: var(--primary-color);
 }
 
 .background {
@@ -42,7 +42,7 @@
 
 .backgroundInverted {
     background: var(--invert-bg-color);
-    color: var(--invert-secondary-color);
+    color: var(--secondary-color);
     border: none;
 }
 

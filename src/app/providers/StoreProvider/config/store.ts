@@ -12,10 +12,7 @@ import { $api } from 'shared/lib/api/api';
 import { createReducerManager } from './reducerManager';
 import { StateSchema, StoreType } from './StateSchema';
 
-export function createReduxStore(
-  initialState?: StateSchema,
-  navigate?: (to: To, options?: NavigateOptions) => void
-) {
+export function createReduxStore(initialState?: StateSchema) {
   const reducer: ReducersMapObject<StateSchema> = {
     user: userReducer,
   };
@@ -31,7 +28,6 @@ export function createReduxStore(
         thunk: {
           extraArgument: {
             api: $api,
-            navigate,
           },
         },
       }),

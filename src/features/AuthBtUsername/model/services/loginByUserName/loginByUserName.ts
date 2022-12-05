@@ -14,7 +14,7 @@ export const loginByUserName = createAsyncThunk<
 >(
   'login/loginByUserName',
   async (loginData, { rejectWithValue, dispatch, extra }) => {
-    const { api, navigate } = extra;
+    const { api } = extra;
     try {
       const response = await api.post<User>('/login', loginData);
 
@@ -22,7 +22,6 @@ export const loginByUserName = createAsyncThunk<
         throw new Error();
       }
       dispatch(userActions.setAuthData(response.data));
-      navigate?.('/about');
       return response.data;
     } catch (e) {
       return rejectWithValue('error');

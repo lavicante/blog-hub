@@ -1,9 +1,11 @@
 import { ProfileCard } from 'entities/Profile';
-import React, { Suspense, useCallback, useState } from 'react';
+import { fetchProfile } from 'features/EditableProfileCard';
+import React, { memo, Suspense, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
+import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { Loader } from 'shared/Loader/ui/Loader';
 import { Modal } from 'shared/Modal/ui/Modal';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
@@ -20,66 +22,66 @@ interface EditableProfileCardProps {
   className?: string;
 }
 
-export const EditableProfileCard = ({
-  className,
-}: EditableProfileCardProps) => {
-  const [open, setOpen] = useState(false);
-  const [isClosedFromBodyModal, setIsClosedFromBodyModal] = useState(false);
-  const { t } = useTranslation('profile');
+export const EditableProfileCard = memo(
+  ({ className }: EditableProfileCardProps) => {
+    const [open, setOpen] = useState(false);
+    const [isClosedFromBodyModal, setIsClosedFromBodyModal] = useState(false);
+    const { t } = useTranslation('profile');
 
-  const data = useSelector(getProfileData);
-  const isLoading = useSelector(getLoadingProfileData);
-  const error = useSelector(getErrorProfileData);
+    const data = useSelector(getProfileData);
+    const isLoading = useSelector(getLoadingProfileData);
+    const error = useSelector(getErrorProfileData);
 
-  const handleOpen = useCallback(() => {
-    setOpen(true);
-  }, []);
-  const handleClose = useCallback(() => {
-    setOpen(false);
-    setIsClosedFromBodyModal(false);
-  }, []);
+    const handleOpen = useCallback(() => {
+      setOpen(true);
+    }, []);
+    const handleClose = useCallback(() => {
+      setOpen(false);
+      setIsClosedFromBodyModal(false);
+    }, []);
 
-  if (isLoading) {
-    return (
-      <div className={classNames(classes.EditableProfileCard, [className])}>
-        <Loader />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={classNames(classes.EditableProfileCard, [className])}>
-        <Text tag='span' variant={TextVarianEnum.ERROR}>
-          {t('Произошла ошибка!')}
-        </Text>
-      </div>
-    );
-  }
-
-  return (
-    <div className={classNames(classes.EditableProfileCard, [className])}>
-      <div className={classes.EditableProfileCard_container}>
-        <div className={classes.ProfileCardHeader}>
-          <Button
-            className={classes.btn}
-            onClick={handleOpen}
-            variant={VariantButton.OUTLINE}
-          >
-            {t('Редактировать')}
-          </Button>
+    if (isLoading) {
+      return (
+        <div className={classNames(classes.EditableProfileCard, [className])}>
+          <Loader />
         </div>
-        <ProfileCard data={data} />
+      );
+    }
+
+    if (error) {
+      return (
+        <div className={classNames(classes.EditableProfileCard, [className])}>
+          <Text tag='span' variant={TextVarianEnum.ERROR}>
+            {t('Произошла ошибка!')}
+          </Text>
+        </div>
+      );
+    }
+
+    return (
+      <div className={classNames(classes.EditableProfileCard, [className])}>
+        <div className={classes.EditableProfileCard_container}>
+          <div className={classes.ProfileCardHeader}>
+            <Button
+              className={classes.btn}
+              onClick={handleOpen}
+              variant={VariantButton.OUTLINE}
+            >
+              {t('Редактировать')}
+            </Button>
+          </div>
+          <ProfileCard data={data} />
+        </div>
+        <Modal
+          isOpen={open}
+          onClose={handleClose}
+          isClosedFromBodyModal={isClosedFromBodyModal}
+        >
+          <Suspense fallback={<Loader />}>
+            <EditableProfileModal onClose={setIsClosedFromBodyModal} />
+          </Suspense>
+        </Modal>
       </div>
-      <Modal
-        isOpen={open}
-        onClose={handleClose}
-        isClosedFromBodyModal={isClosedFromBodyModal}
-      >
-        <Suspense fallback={<Loader />}>
-          <EditableProfileModal onClose={setIsClosedFromBodyModal} />
-        </Suspense>
-      </Modal>
-    </div>
-  );
-};
+    );
+  }
+);

@@ -21,10 +21,8 @@ const reducers: ReducersList = {
 };
 
 const Profile = memo(({ className }: ProfileProps) => {
-  const { t } = useTranslation('profile');
-  const dispatch = useAppDispatch();
-
   useDynamicReducer(reducers);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (__PROJECT__ === 'frontend') {
