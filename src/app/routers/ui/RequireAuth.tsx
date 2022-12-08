@@ -1,16 +1,18 @@
+import { getUserAuthData } from 'entities/User';
 import { ReactNode } from 'react';
+import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from 'shared/lib/hooks/useAuth/useAuth';
 
-import { AppRoutes } from '../config/routerConfig';
+import { AppPath } from '../config/routerConfig';
 
-export function RequireAuth({ children }: { children: JSX.Element }) {
-  const { auth } = useAuth();
+export function RequireAuth({ children }: { children: ReactNode }) {
+  const auth = useSelector(getUserAuthData);
   const location = useLocation();
 
   if (!auth) {
-    return <Navigate to={AppRoutes.MAIN} state={{ from: location }} replace />;
+    return <Navigate to={AppPath.main} state={{ from: location }} replace />;
   }
 
-  return children;
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{children}</>;
 }

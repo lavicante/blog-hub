@@ -1,5 +1,7 @@
+import { getUserAuthData } from 'entities/User';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { AppLInk, AppLinkTheme } from 'shared/AppLink/ui/AppLInk';
 import { classNames } from 'shared/lib/classNames';
 import { ISidebarItem } from 'widgets/Switcher/model/items';
@@ -13,6 +15,12 @@ interface SidebarItemProps {
 
 export const SidebarItem = memo(({ item, collapsed }: SidebarItemProps) => {
   const { t } = useTranslation();
+  const auth = useSelector(getUserAuthData);
+
+  if (item.privateRoute && !auth) {
+    return null;
+  }
+
   return (
     <AppLInk
       to={item.path}

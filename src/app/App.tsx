@@ -1,16 +1,14 @@
-import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/routers';
-import { userActions } from 'entities/User';
-import { Suspense, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { getInitedUser, userActions } from 'entities/User';
+import { Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Switcher';
 
 const App = () => {
-  const { theme } = useTheme();
-
   const dispatch = useDispatch();
+  const initedUser = useSelector(getInitedUser);
 
   useEffect(() => {
     dispatch(userActions.initAuthData());
@@ -22,7 +20,7 @@ const App = () => {
         <Navbar />
         <div className='content-page'>
           <Sidebar />
-          <AppRouter />
+          {initedUser && <AppRouter />}
         </div>
       </Suspense>
     </div>

@@ -8,6 +8,7 @@ export interface ISidebarItem {
   path: string;
   text: string;
   icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  privateRoute?: boolean;
 }
 
 export const sidebarItems: ISidebarItem[] = [
@@ -26,5 +27,6 @@ export const sidebarItems: ISidebarItem[] = [
     path: AppPath.profile,
     text: 'Страница профиля',
     icon: ProfileIcon,
+    privateRoute: true,
   },
 ];
