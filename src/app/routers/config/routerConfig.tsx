@@ -6,6 +6,10 @@ const About = React.lazy(() => import('pages/About'));
 const Profile = React.lazy(() => import('pages/Profile'));
 const NotFound = React.lazy(() => import('pages/NotFound'));
 
+export type AppRoutesProps = RouteObject & {
+  privateRoute?: boolean;
+};
+
 export const enum AppRoutes {
   MAIN = 'main',
   ABOUT = 'about',
@@ -20,7 +24,7 @@ export const AppPath: Record<AppRoutes, string> = {
   [AppRoutes.NOT_FOUND]: '*',
 };
 
-export const routersConfig: Record<AppRoutes, RouteObject> = {
+export const routersConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MAIN]: {
     path: AppPath.main,
     element: <Main />,
@@ -32,6 +36,7 @@ export const routersConfig: Record<AppRoutes, RouteObject> = {
   [AppRoutes.PROFILE]: {
     path: AppPath.profile,
     element: <Profile />,
+    privateRoute: true,
   },
   [AppRoutes.NOT_FOUND]: {
     path: AppPath.notFound,
