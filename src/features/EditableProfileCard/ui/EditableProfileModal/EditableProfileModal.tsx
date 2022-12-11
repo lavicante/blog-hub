@@ -17,7 +17,9 @@ import { getProfileData } from '../../model/selectors/getProfileData/getProfileD
 import { updateProfile } from '../../model/services/updateProfile/updateProfile';
 import classes from './EditableProfileModal.module.scss';
 import error = Simulate.error;
-import { ValidationErrors } from 'features/EditableProfileCard/model/types/profile';
+import { toast } from 'react-toastify';
+
+import { ValidationErrors } from '../../model/types/profile';
 
 interface EditableProfileModalProps {
   className?: string;
@@ -90,7 +92,10 @@ const EditableProfileModal = memo(
       } = await dispatch(updateProfile());
 
       if (requestStatus === 'fulfilled') {
+        toast.success('Профиль успешно обновлен!');
         onClose?.(true);
+      } else {
+        toast.error('Ошибка обновления профиля!');
       }
     };
 
