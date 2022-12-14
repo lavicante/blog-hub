@@ -1,15 +1,23 @@
 import { useTheme } from 'app/providers/ThemeProvider';
-import { memo, useEffect } from 'react';
+import { ArticleCodeComponent } from 'entities/Article/ui/ArticleCodeComponent/ArticleCodeBlockComponent';
+import { ArticleImageComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
+import { ArticleTextComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTexteBlockComponent';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import CreateAtIcon from 'shared/assets/icons/calendar.svg';
+import ViewsIcon from 'shared/assets/icons/views.svg';
+import { Avatar } from 'shared/Avatar/ui/Avatar';
 import {
   ReducersList,
   useDynamicReducer,
 } from 'shared/hooks/useDynamicReducer/useDynamicReducer';
+import { Icon } from 'shared/Icon/ui/Icon';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { Sceleton } from 'shared/Skeleton/ui/Skeleton';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
 
+import { skeletonThemeColor } from '../../model/constants/skeletonThemeColor';
 import {
   getArticle,
   getError,
@@ -17,6 +25,7 @@ import {
 } from '../../model/selectors/getArticle';
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById';
 import { articleDetailsReducer } from '../../model/slice/articleDetails';
+import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
 import classes from './ArticleDetailsComponent.module.scss';
 
 interface ArticleDetailsComponentProps {
@@ -41,14 +50,34 @@ export const ArticleDetailsComponent = memo(
       dispatch(fetchArticleById(id));
     }, [dispatch, id]);
 
-    if (isLoading) {
-      let backgroundColorSeleton = '#fbf4f4';
-      let foregroundColorSceleton = '#0f0f0f';
-
-      if (theme === 'dark') {
-        backgroundColorSeleton = '#0f0f0f';
-        foregroundColorSceleton = '#fbf4f4';
+    const renderBlocks = useCallback((block: ArticleBlock) => {
+      switch (block.type) {
+        case ArticleBlockType.TEXT:
+          return (
+            <ArticleTextComponent
+              className={classes.block}
+              title={block.title}
+              paragraphs={block.paragraphs}
+            />
+          );
+        case ArticleBlockType.IMAGE:
+          return (
+            <ArticleImageComponent
+              title={block.title}
+              src={block.src}
+              className={classes.block}
+            />
+          );
+        case ArticleBlockType.CODE:
+          return <ArticleCodeComponent className={classes.block} />;
+        default:
+          return null;
       }
+    }, []);
+
+    if (isLoading) {
+      const { backgroundColorSkeleton, foregroundColorSkeleton } =
+        skeletonThemeColor[theme];
       return (
         <div
           className={classNames(classes.ArticleDetailsComponent, [className])}
@@ -56,8 +85,8 @@ export const ArticleDetailsComponent = memo(
           <Sceleton
             width='100%'
             height='100%'
-            backgroundColor={backgroundColorSeleton}
-            foregroundColor={foregroundColorSceleton}
+            backgroundColor={backgroundColorSkeleton}
+            foregroundColor={foregroundColorSkeleton}
           />
         </div>
       );
@@ -77,7 +106,46 @@ export const ArticleDetailsComponent = memo(
 
     return (
       <div className={classNames(classes.ArticleDetailsComponent, [className])}>
-        <h1>ArticleDetailsComponent</h1>
+        <div className={classes.block}>
+          {article?.id && (
+            <div className={classes.articleAvatar}>
+              <Avatar src={article.img} alt={article.title} size={300} />
+            </div>
+          )}
+          {article?.title && (
+            <Text
+              className={classes.title}
+              tag='h1'
+              variant={TextVarianEnum.PRIMARY}
+              align='left'
+            >
+              {article.title}
+            </Text>
+          )}
+          {article?.subtitle && (
+            <Text
+              className={classes.title}
+              tag='h4'
+              variant={TextVarianEnum.PRIMARY}
+              align='left'
+            >
+              {article.subtitle}
+            </Text>
+          )}
+          <div className={classes.views}>
+            <Icon className={classes.viewsIcon} Svg={ViewsIcon} />
+            <Text tag='span' variant={TextVarianEnum.PRIMARY}>
+              {article?.views}
+            </Text>
+          </div>
+          <div className={classes.createAt}>
+            <Icon className={classes.createAtIcon} Svg={CreateAtIcon} />
+            <Text tag='span' variant={TextVarianEnum.PRIMARY}>
+              {article?.createdAt}
+            </Text>
+          </div>
+        </div>
+        <div className={classes.body}>{article?.blocks.map(renderBlocks)}</div>
       </div>
     );
   }

@@ -1,0 +1,28 @@
+.ArticleDetailsComponent{
+  padding: 40px;
+}
+
+.block{
+  margin-bottom: 30px;
+}
+
+.articleAvatar{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.title{
+  margin-bottom: 15px;
+}
+
+.viewsIcon,
+.createAtIcon{
+  margin-right: 10px;
+}
+
+.views,
+.createAt{
+  display: flex;
+  align-items: center;
+}
