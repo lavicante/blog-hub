@@ -69,7 +69,9 @@ export const ArticleDetailsComponent = memo(
             />
           );
         case ArticleBlockType.CODE:
-          return <ArticleCodeComponent className={classes.block} />;
+          return (
+            <ArticleCodeComponent code={block.code} className={classes.block} />
+          );
         default:
           return null;
       }

@@ -1,0 +1,17 @@
+.CodeBlock{
+  position: relative;
+  width: 100%;
+  padding: 40px;
+  background-color: var(--primary-color);
+  color: var(--invert-primary-color)
+}
+
+.copyBtn{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.copyIcon{
+  stroke: var(--invert-primary-color);
+}
