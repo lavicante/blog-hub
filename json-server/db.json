@@ -180,19 +180,21 @@
       "id": "1",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://image.pngaaa.com/262/1721262-middle.png"
     },
     {
       "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER"
+      "role": "USER",
+      "avatar":  "https://image.pngaaa.com/262/1721262-middle.png"
     }
   ],
   "profile": {
     "first": "jgh",
     "lastname": "Демирель",
-    "age": 465,
+    "age": 466,
     "currency": "RUB",
     "country": "Belarus",
     "city": "Moscow",

@@ -2,6 +2,7 @@ import { Profile } from 'features/EditableProfileCard';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Avatar } from 'shared/Avatar/ui/Avatar';
+import { AVATAR_PLACEHOLDER } from 'shared/constants/common';
 import { classNames } from 'shared/lib/classNames';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
 
@@ -11,9 +12,6 @@ interface ProfileCardProps {
   className?: string;
   data?: Profile;
 }
-
-const AVATAR_PLACEHOLDER =
-  'https://repository-images.githubusercontent.com/130118224/a2c75780-e0a9-11eb-8494-3581a0b1c93b';
 
 export const ProfileCard = memo(({ className, data }: ProfileCardProps) => {
   const { t } = useTranslation('profile');

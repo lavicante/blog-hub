@@ -1,4 +1,5 @@
 import { ArticleDetailsComponent } from 'entities/Article';
+import { CommentList } from 'entities/Comment';
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames';
@@ -26,6 +27,27 @@ const ArticleDetails = memo(({ className }: ArticleDetailsProps) => {
   return (
     <div className={classNames(classes.ArticleDetails, [className])}>
       <ArticleDetailsComponent id={id} />
+      <CommentList
+        comments={[
+          {
+            id: '1',
+            text: 'Первый коммент',
+            user: {
+              id: 1,
+              username: 'demirel',
+            },
+          },
+          {
+            id: '2',
+            text: 'Второй коммент',
+            user: {
+              id: 1,
+              username: 'demirel',
+            },
+          },
+        ]}
+        isLoading
+      />
     </div>
   );
 });
