@@ -11,6 +11,7 @@ import {
 } from 'shared/hooks/useDynamicReducer/useDynamicReducer';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
+import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
 
 interface ProfileProps {
   className?: string;
@@ -21,14 +22,12 @@ const reducers: ReducersList = {
 };
 
 const Profile = memo(({ className }: ProfileProps) => {
-  useDynamicReducer(reducers);
   const dispatch = useAppDispatch();
+  useDynamicReducer(reducers);
 
-  useEffect(() => {
-    if (__PROJECT__ === 'frontend') {
-      dispatch(fetchProfile());
-    }
-  }, [dispatch]);
+  useInitialProject(() => {
+    dispatch(fetchProfile());
+  });
 
   return (
     <div className={classNames('', [className])}>

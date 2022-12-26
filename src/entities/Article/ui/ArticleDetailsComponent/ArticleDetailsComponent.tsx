@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import CreateAtIcon from 'shared/assets/icons/calendar.svg';
 import ViewsIcon from 'shared/assets/icons/views.svg';
 import { Avatar } from 'shared/Avatar/ui/Avatar';
+import { skeletonThemeColor } from 'shared/constants/skeletonsTheme';
 import {
   ReducersList,
   useDynamicReducer,
@@ -17,7 +18,6 @@ import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { Sceleton } from 'shared/Skeleton/ui/Skeleton';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
 
-import { skeletonThemeColor } from '../../model/constants/skeletonThemeColor';
 import {
   getArticle,
   getError,
@@ -44,7 +44,6 @@ export const ArticleDetailsComponent = memo(
     const article = useSelector(getArticle);
     const isLoading = useSelector(getIsLoading);
     const error = useSelector(getError);
-    const { theme } = useTheme();
 
     useEffect(() => {
       dispatch(fetchArticleById(id));
@@ -78,18 +77,11 @@ export const ArticleDetailsComponent = memo(
     }, []);
 
     if (isLoading) {
-      const { backgroundColorSkeleton, foregroundColorSkeleton } =
-        skeletonThemeColor[theme];
       return (
         <div
           className={classNames(classes.ArticleDetailsComponent, [className])}
         >
-          <Sceleton
-            width='100%'
-            height='100%'
-            backgroundColor={backgroundColorSkeleton}
-            foregroundColor={foregroundColorSkeleton}
-          />
+          <Sceleton width='100%' height='100%' />
         </div>
       );
     }

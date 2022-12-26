@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
 
@@ -9,30 +10,41 @@ interface CommentListProps {
   className?: string;
   comments: Comment[];
   isLoading?: boolean;
+
+  isError?: string;
 }
 
-export const CommentList = ({
-  className,
-  comments,
-  isLoading,
-}: CommentListProps) => (
-  <div className={classNames(classes.CommentList, [className])}>
-    <Text
-      className={classes.CommentList_header}
-      align='left'
-      tag='h3'
-      variant={TextVarianEnum.PRIMARY}
-    >
-      Комментарии
-    </Text>
-    {comments.length > 0 ? (
-      comments.map((comment) => (
-        <CommentCard comment={comment} isLoading={isLoading} />
-      ))
-    ) : (
-      <Text tag='p' variant={TextVarianEnum.PRIMARY}>
-        К этой статье комментариев нет. Будь первым!
-      </Text>
-    )}
-  </div>
+export const CommentList = memo(
+  ({ className, comments, isLoading, isError }: CommentListProps) => {
+    if (isError) {
+      return (
+        <div className={classNames(classes.CommentList, [className])}>
+          <Text align='center' tag='h3' variant={TextVarianEnum.ERROR}>
+            Ошибка загрузки комментариев
+          </Text>
+        </div>
+      );
+    }
+    return (
+      <div className={classNames(classes.CommentList, [className])}>
+        <Text
+          className={classes.CommentList_header}
+          align='left'
+          tag='h3'
+          variant={TextVarianEnum.PRIMARY}
+        >
+          Комментарии
+        </Text>
+        {comments.length > 0 ? (
+          comments.map((comment) => (
+            <CommentCard comment={comment} isLoading={isLoading} />
+          ))
+        ) : (
+          <Text tag='p' variant={TextVarianEnum.PRIMARY}>
+            К этой статье комментариев нет. Будь первым!
+          </Text>
+        )}
+      </div>
+    );
+  }
 );

@@ -10,7 +10,7 @@ export const fetchArticleById = createAsyncThunk<
 >(
   'profile/fetchArticleById',
   async (articleId, { rejectWithValue, dispatch, extra }) => {
-    const { api, navigate } = extra;
+    const { api } = extra;
     try {
       const response = await api.get<Article>(`/articles/${articleId}`);
 
