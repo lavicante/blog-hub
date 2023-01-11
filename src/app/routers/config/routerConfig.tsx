@@ -17,7 +17,8 @@ export const enum AppRoutes {
   ABOUT = 'about',
   PROFILE = 'profile',
   ARTICLES = 'articles',
-  ARTICLES_DETAILS = 'articles_details',
+  ARTICLES_DETAILS = 'articlesDetails',
+  USERS_PROFILE = 'usersProfile',
   NOT_FOUND = 'notFound',
 }
 
@@ -25,6 +26,7 @@ export const AppPath: Record<AppRoutes, string> = {
   [AppRoutes.MAIN]: '/',
   [AppRoutes.ABOUT]: '/about',
   [AppRoutes.PROFILE]: '/profile',
+  [AppRoutes.USERS_PROFILE]: '/profile/',
   [AppRoutes.ARTICLES]: '/articles',
   [AppRoutes.ARTICLES_DETAILS]: '/articles/',
   [AppRoutes.NOT_FOUND]: '*',
@@ -40,7 +42,12 @@ export const routersConfig: Record<AppRoutes, AppRoutesProps> = {
     element: <About />,
   },
   [AppRoutes.PROFILE]: {
-    path: AppPath.profile,
+    path: `${AppPath.profile}`,
+    element: <Profile />,
+    privateRoute: true,
+  },
+  [AppRoutes.USERS_PROFILE]: {
+    path: `${AppPath.usersProfile}:id`,
     element: <Profile />,
     privateRoute: true,
   },
@@ -50,7 +57,7 @@ export const routersConfig: Record<AppRoutes, AppRoutesProps> = {
     privateRoute: true,
   },
   [AppRoutes.ARTICLES_DETAILS]: {
-    path: `${AppPath.articles_details}:id`,
+    path: `${AppPath.articlesDetails}:id`,
     element: <ArticlesDetails />,
     privateRoute: true,
   },

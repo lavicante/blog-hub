@@ -1,4 +1,3 @@
-import { useTheme } from 'app/providers/ThemeProvider';
 import { ArticleCodeComponent } from 'entities/Article/ui/ArticleCodeComponent/ArticleCodeBlockComponent';
 import { ArticleImageComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTexteBlockComponent';

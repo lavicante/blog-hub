@@ -5,6 +5,7 @@ import {
 } from 'features/EditableProfileCard';
 import { memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
 import {
   ReducersList,
   useDynamicReducer,
@@ -22,11 +23,12 @@ const reducers: ReducersList = {
 };
 
 const Profile = memo(({ className }: ProfileProps) => {
+  const { id: userId } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   useDynamicReducer(reducers);
 
   useInitialProject(() => {
-    dispatch(fetchProfile());
+    dispatch(fetchProfile(userId));
   });
 
   return (

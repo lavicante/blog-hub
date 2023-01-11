@@ -1,3 +1,5 @@
+import { AppPath } from 'app/routers/config/routerConfig';
+import { AppLInk } from 'shared/AppLink/ui/AppLInk';
 import { Avatar } from 'shared/Avatar/ui/Avatar';
 import { AVATAR_PLACEHOLDER } from 'shared/constants/common';
 import { classNames } from 'shared/lib/classNames';
@@ -35,9 +37,9 @@ export const CommentCard = ({
           src={comment.user.avatar || AVATAR_PLACEHOLDER}
           alt={comment.user.username}
         />
-        <Text tag='h5' variant={TextVarianEnum.PRIMARY}>
+        <AppLInk to={`${AppPath.usersProfile}${comment.user.id}`}>
           {comment.user.username}
-        </Text>
+        </AppLInk>
       </div>
       <Text align='left' tag='p' variant={TextVarianEnum.PRIMARY}>
         {comment.text}

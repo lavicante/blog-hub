@@ -1,11 +1,11 @@
 import { ProfileCard } from 'entities/Profile';
-import { fetchProfile } from 'features/EditableProfileCard';
-import React, { memo, Suspense, useCallback, useEffect, useState } from 'react';
+import { getUserData } from 'entities/User';
+import React, { memo, Suspense, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { Loader } from 'shared/Loader/ui/Loader';
 import { Modal } from 'shared/Modal/ui/Modal';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
@@ -27,10 +27,14 @@ export const EditableProfileCard = memo(
     const [open, setOpen] = useState(false);
     const [isClosedFromBodyModal, setIsClosedFromBodyModal] = useState(false);
     const { t } = useTranslation('profile');
+    const { id } = useParams<{ id: string }>();
 
     const data = useSelector(getProfileData);
     const isLoading = useSelector(getLoadingProfileData);
     const error = useSelector(getErrorProfileData);
+    const user = useSelector(getUserData);
+
+    const canEdit = user?.id === id;
 
     const handleOpen = useCallback(() => {
       setOpen(true);
@@ -62,13 +66,15 @@ export const EditableProfileCard = memo(
       <div className={classNames(classes.EditableProfileCard, [className])}>
         <div className={classes.EditableProfileCard_container}>
           <div className={classes.ProfileCardHeader}>
-            <Button
-              className={classes.btn}
-              onClick={handleOpen}
-              variant={VariantButton.OUTLINE}
-            >
-              {t('Редактировать')}
-            </Button>
+            {canEdit && (
+              <Button
+                className={classes.btn}
+                onClick={handleOpen}
+                variant={VariantButton.OUTLINE}
+              >
+                {t('Редактировать')}
+              </Button>
+            )}
           </div>
           <ProfileCard data={data} />
         </div>

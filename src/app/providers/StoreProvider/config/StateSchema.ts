@@ -11,6 +11,7 @@ import { To } from '@remix-run/router';
 import { AxiosInstance } from 'axios';
 import { ArticleDetailsSchema } from 'entities/Article';
 import { UserSchema } from 'entities/User';
+import { AddCommentFormType } from 'features/addCommentForm';
 import { LoginSchema } from 'features/AuthBtUsername';
 import { ProfileSchema } from 'features/EditableProfileCard';
 import { ArticleDetailCommentSchema } from 'pages/ArticleDetails';
@@ -21,8 +22,8 @@ export interface StateSchema {
   login?: LoginSchema;
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
-
   articleDetailsComment?: ArticleDetailCommentSchema;
+  addFormComment?: AddCommentFormType;
 }
 
 export type StateSchemaKey = keyof StateSchema;

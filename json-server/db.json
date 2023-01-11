@@ -191,15 +191,30 @@
       "avatar":  "https://image.pngaaa.com/262/1721262-middle.png"
     }
   ],
-  "profile": {
-    "first": "jgh",
-    "lastname": "Демирель",
-    "age": 466,
-    "currency": "RUB",
-    "country": "Belarus",
-    "city": "Moscow",
-    "username": "admin",
-    "avatar": "https://image.pngaaa.com/262/1721262-middle.png",
-    "firstname": "Кемал"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Kemal",
+      "lastname": "Демирель",
+      "age": 466,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin",
+      "avatar": "https://image.pngaaa.com/262/1721262-middle.png",
+      "firstname": "Кемал"
+    },
+    {
+      "id": "2",
+      "first": "User",
+      "lastname": "Userovich",
+      "age": 466,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin",
+      "avatar": "https://image.pngaaa.com/262/1721262-middle.png",
+      "firstname": "Кемал"
+    }
+  ]
 }
