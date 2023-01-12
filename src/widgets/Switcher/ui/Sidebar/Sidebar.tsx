@@ -1,9 +1,10 @@
 import React, { memo, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Button, SizeButton, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
 import { SwitcherButton } from 'shared/SwitcherButton/ui/SwitcherButton';
 import { ThemeButton } from 'shared/ThemeButton/ui/ThemeButton';
-import { sidebarItems } from 'widgets/Switcher/model/items';
+import { getSidebarItems } from 'widgets/Switcher/selectors/getSideBarItems/getSidebarItems';
 import { SidebarItem } from 'widgets/Switcher/ui/SidebarItem/SidebarItem';
 
 import classes from './Sidebar.module.scss';
@@ -14,6 +15,7 @@ interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
   const [collapsed, setCollapsed] = useState<boolean>(false);
+  const sidebarItems = useSelector(getSidebarItems);
 
   const onCollapsed = () => setCollapsed((prev) => !prev);
 

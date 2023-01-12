@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { AppLInk, AppLinkTheme } from 'shared/AppLink/ui/AppLInk';
 import { classNames } from 'shared/lib/classNames';
-import { ISidebarItem } from 'widgets/Switcher/model/items';
+import { ISidebarItem } from 'widgets/Switcher/types/sideBarItems';
 
 import classes from './SidebarItem.module.scss';
 

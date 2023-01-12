@@ -20,7 +20,6 @@ export const CommentCard = ({
   comment,
   isLoading,
 }: CommentCardProps) => {
-  console.log(comment);
   if (isLoading) {
     return (
       <div className={classNames(classes.CommentCard, [className])}>
@@ -38,7 +37,7 @@ export const CommentCard = ({
           src={comment.user.avatar || AVATAR_PLACEHOLDER}
           alt={comment.user.username}
         />
-        <AppLInk to={`${AppPath.usersProfile}${comment.user.id}`}>
+        <AppLInk to={`${AppPath.profile}${comment.user.id}`}>
           {comment.user.username}
         </AppLInk>
       </div>
