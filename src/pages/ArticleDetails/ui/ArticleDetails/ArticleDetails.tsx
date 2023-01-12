@@ -1,11 +1,11 @@
 import { ArticleDetailsComponent } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
+import { AddCommentForm } from 'features/addCommentForm';
 import {
   getErrorComments,
   getLoadingComments,
 } from 'pages/ArticleDetails/model/selectors/comments';
-import { fetchCommentByArticleId } from 'pages/ArticleDetails/model/services/fetchCommentByArticleId';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
@@ -17,6 +17,8 @@ import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
 
+import { addCommentFormService } from '../../model/services/addCommentFormService/addCommentformService';
+import { fetchCommentByArticleId } from '../../model/services/fetchCommentByArticleId';
 import {
   articleDetailsCommentsReducer,
   getArticleComments,
@@ -44,6 +46,14 @@ const ArticleDetails = memo(({ className }: ArticleDetailsProps) => {
   const isLoading = useSelector(getLoadingComments);
   const isError = useSelector(getErrorComments);
 
+  const onSubmitComment = useCallback(
+    (value: string) => {
+      console.log(value);
+      dispatch(addCommentFormService(value));
+    },
+    [dispatch]
+  );
+
   if (!id) {
     return (
       <div className={classNames(classes.ArticleDetails, [className])}>
@@ -57,6 +67,7 @@ const ArticleDetails = memo(({ className }: ArticleDetailsProps) => {
   return (
     <div className={classNames(classes.ArticleDetails, [className])}>
       <ArticleDetailsComponent id={id} />
+      <AddCommentForm onSendComment={onSubmitComment} />
       <CommentList comments={comments} isLoading={isLoading} />
     </div>
   );

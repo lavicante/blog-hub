@@ -20,6 +20,7 @@ export const CommentCard = ({
   comment,
   isLoading,
 }: CommentCardProps) => {
+  console.log(comment);
   if (isLoading) {
     return (
       <div className={classNames(classes.CommentCard, [className])}>

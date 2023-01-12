@@ -173,6 +173,30 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "text": "sdf",
+      "articleId": "1",
+      "userId": "1",
+      "id": "tYsbcS2"
+    },
+    {
+      "text": "Еще один коммент",
+      "articleId": "1",
+      "userId": "1",
+      "id": "j4OAeSb"
+    },
+    {
+      "text": "Еще добавлю",
+      "articleId": "1",
+      "userId": "2",
+      "id": "lQNCCGK"
+    },
+    {
+      "text": "Ещее",
+      "articleId": "1",
+      "userId": "2",
+      "id": "iVF2zA4"
     }
   ],
   "users": [
@@ -188,7 +212,7 @@
       "username": "user",
       "password": "123",
       "role": "USER",
-      "avatar":  "https://image.pngaaa.com/262/1721262-middle.png"
+      "avatar": "https://freesvg.org/img/myAvatar.png"
     }
   ],
   "profile": [
@@ -213,7 +237,7 @@
       "country": "Belarus",
       "city": "Moscow",
       "username": "admin",
-      "avatar": "https://image.pngaaa.com/262/1721262-middle.png",
+      "avatar": "https://freesvg.org/img/myAvatar.png",
       "firstname": "Кемал"
     }
   ]
