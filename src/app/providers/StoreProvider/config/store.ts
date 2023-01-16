@@ -12,12 +12,16 @@ import { $api } from 'shared/lib/api/api';
 import { createReducerManager } from './reducerManager';
 import { StateSchema, StoreType } from './StateSchema';
 
-export function createReduxStore(initialState?: StateSchema) {
-  const reducer: ReducersMapObject<StateSchema> = {
+export function createReduxStore(
+  initialState?: StateSchema,
+  asyncReducers?: ReducersMapObject<StateSchema>
+) {
+  const rootReducer: ReducersMapObject<StateSchema> = {
     user: userReducer,
+    ...asyncReducers,
   };
 
-  const reducerManager = createReducerManager(reducer);
+  const reducerManager = createReducerManager(rootReducer);
 
   const store: StoreType = configureStore({
     reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,

@@ -64,7 +64,7 @@ export const Modal = ({
     if (isClosedFromBodyModal) {
       handleClose();
     }
-  }, [isClosedFromBodyModal]);
+  }, [handleClose, isClosedFromBodyModal]);
 
   useEffect(() => {
     if (isOpen) {

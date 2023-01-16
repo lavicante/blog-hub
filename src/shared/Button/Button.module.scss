@@ -97,3 +97,8 @@
 .size_xl {
     font: var(--font-xl);
 }
+
+.disabled {
+    border: 1px solid var(--disabled);
+    color: var(--disabled)
+}

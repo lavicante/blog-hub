@@ -37,7 +37,11 @@ export const CommentList = memo(
         </Text>
         {comments.length > 0 ? (
           comments.map((comment) => (
-            <CommentCard comment={comment} isLoading={isLoading} />
+            <CommentCard
+              key={comment.id}
+              comment={comment}
+              isLoading={isLoading}
+            />
           ))
         ) : (
           <Text tag='p' variant={TextVarianEnum.PRIMARY}>

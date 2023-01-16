@@ -34,10 +34,12 @@ export const Button: FC<ButtonProps> = ({
   variant = VariantButton.OUTLINE,
   square,
   size = SizeButton.M,
+  disabled,
   ...otherProps
 }: ButtonProps) => {
   const mods = {
     [classes.square]: square,
+    [classes.disabled]: disabled,
   };
 
   return (

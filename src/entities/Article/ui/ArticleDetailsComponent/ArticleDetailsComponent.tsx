@@ -1,7 +1,7 @@
 import { ArticleCodeComponent } from 'entities/Article/ui/ArticleCodeComponent/ArticleCodeBlockComponent';
 import { ArticleImageComponent } from 'entities/Article/ui/ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTexteBlockComponent';
-import { memo, useCallback, useEffect } from 'react';
+import { JSXElementConstructor, memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import CreateAtIcon from 'shared/assets/icons/calendar.svg';
 import ViewsIcon from 'shared/assets/icons/views.svg';
@@ -13,7 +13,9 @@ import {
 } from 'shared/hooks/useDynamicReducer/useDynamicReducer';
 import { Icon } from 'shared/Icon/ui/Icon';
 import { classNames } from 'shared/lib/classNames';
+import { DynamicReducerLoader } from 'shared/lib/components/dynamicReducerLoader/dynamicReducerLoader';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
+import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
 import { Sceleton } from 'shared/Skeleton/ui/Skeleton';
 import { Text, TextVarianEnum } from 'shared/Text/Text';
 
@@ -32,21 +34,20 @@ interface ArticleDetailsComponentProps {
   className?: string;
 }
 
-const redusers: ReducersList = {
+const reducers: ReducersList = {
   articleDetails: articleDetailsReducer,
 };
 
 export const ArticleDetailsComponent = memo(
   ({ className, id }: ArticleDetailsComponentProps) => {
-    useDynamicReducer(redusers);
     const dispatch = useAppDispatch();
     const article = useSelector(getArticle);
     const isLoading = useSelector(getIsLoading);
     const error = useSelector(getError);
 
-    useEffect(() => {
+    useInitialProject(() => {
       dispatch(fetchArticleById(id));
-    }, [dispatch, id]);
+    });
 
     const renderBlocks = useCallback((block: ArticleBlock) => {
       switch (block.type) {
@@ -75,18 +76,18 @@ export const ArticleDetailsComponent = memo(
       }
     }, []);
 
+    let content: JSX.Element | undefined;
+
     if (isLoading) {
-      return (
+      content = (
         <div
           className={classNames(classes.ArticleDetailsComponent, [className])}
         >
           <Sceleton width='100%' height='100%' />
         </div>
       );
-    }
-
-    if (error) {
-      return (
+    } else if (error) {
+      content = (
         <div
           className={classNames(classes.ArticleDetailsComponent, [className])}
         >
@@ -95,51 +96,59 @@ export const ArticleDetailsComponent = memo(
           </Text>
         </div>
       );
+    } else {
+      content = (
+        <div
+          className={classNames(classes.ArticleDetailsComponent, [className])}
+        >
+          <div className={classes.block}>
+            {article?.id && (
+              <div className={classes.articleAvatar}>
+                <Avatar src={article.img} alt={article.title} size={300} />
+              </div>
+            )}
+            {article?.title && (
+              <Text
+                className={classes.title}
+                tag='h1'
+                variant={TextVarianEnum.PRIMARY}
+                align='left'
+              >
+                {article.title}
+              </Text>
+            )}
+            {article?.subtitle && (
+              <Text
+                className={classes.title}
+                tag='h4'
+                variant={TextVarianEnum.PRIMARY}
+                align='left'
+              >
+                {article.subtitle}
+              </Text>
+            )}
+            <div className={classes.views}>
+              <Icon className={classes.viewsIcon} Svg={ViewsIcon} />
+              <Text tag='span' variant={TextVarianEnum.PRIMARY}>
+                {article?.views}
+              </Text>
+            </div>
+            <div className={classes.createAt}>
+              <Icon className={classes.createAtIcon} Svg={CreateAtIcon} />
+              <Text tag='span' variant={TextVarianEnum.PRIMARY}>
+                {article?.createdAt}
+              </Text>
+            </div>
+          </div>
+          <div className={classes.body}>
+            {article?.blocks.map(renderBlocks)}
+          </div>
+        </div>
+      );
     }
 
     return (
-      <div className={classNames(classes.ArticleDetailsComponent, [className])}>
-        <div className={classes.block}>
-          {article?.id && (
-            <div className={classes.articleAvatar}>
-              <Avatar src={article.img} alt={article.title} size={300} />
-            </div>
-          )}
-          {article?.title && (
-            <Text
-              className={classes.title}
-              tag='h1'
-              variant={TextVarianEnum.PRIMARY}
-              align='left'
-            >
-              {article.title}
-            </Text>
-          )}
-          {article?.subtitle && (
-            <Text
-              className={classes.title}
-              tag='h4'
-              variant={TextVarianEnum.PRIMARY}
-              align='left'
-            >
-              {article.subtitle}
-            </Text>
-          )}
-          <div className={classes.views}>
-            <Icon className={classes.viewsIcon} Svg={ViewsIcon} />
-            <Text tag='span' variant={TextVarianEnum.PRIMARY}>
-              {article?.views}
-            </Text>
-          </div>
-          <div className={classes.createAt}>
-            <Icon className={classes.createAtIcon} Svg={CreateAtIcon} />
-            <Text tag='span' variant={TextVarianEnum.PRIMARY}>
-              {article?.createdAt}
-            </Text>
-          </div>
-        </div>
-        <div className={classes.body}>{article?.blocks.map(renderBlocks)}</div>
-      </div>
+      <DynamicReducerLoader reducers={reducers}>{content}</DynamicReducerLoader>
     );
   }
 );

@@ -5,6 +5,7 @@ import { AddCommentFormSchema } from '../types/addCommentForm';
 const initialState: AddCommentFormSchema = {
   text: undefined,
   error: undefined,
+  loading: undefined,
 };
 
 export const addCommentFormSlice = createSlice({
@@ -13,6 +14,9 @@ export const addCommentFormSlice = createSlice({
   reducers: {
     addTextComment: (state, action: PayloadAction<string>) => {
       state.text = action.payload;
+    },
+    addLoadingStatus: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
     },
   },
 });

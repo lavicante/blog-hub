@@ -163,40 +163,52 @@
       "userId": "1"
     },
     {
-      "id": "2",
-      "text": "some comment 2",
-      "articleId": "1",
-      "userId": "1"
-    },
-    {
-      "id": "3",
-      "text": "some comment 3",
-      "articleId": "1",
-      "userId": "1"
-    },
-    {
-      "text": "sdf",
+      "text": "тест",
       "articleId": "1",
       "userId": "1",
-      "id": "tYsbcS2"
+      "id": "BLM5poR"
     },
     {
-      "text": "Еще один коммент",
+      "text": "gdfg",
       "articleId": "1",
       "userId": "1",
-      "id": "j4OAeSb"
+      "id": "YkS_VA0"
     },
     {
-      "text": "Еще добавлю",
+      "text": "dsfsdfsdf",
       "articleId": "1",
-      "userId": "2",
-      "id": "lQNCCGK"
+      "userId": "1",
+      "id": "O0h0Msy"
     },
     {
-      "text": "Ещее",
+      "text": "Бла бла бла",
       "articleId": "1",
-      "userId": "2",
-      "id": "iVF2zA4"
+      "userId": "1",
+      "id": "FLGW8_g"
+    },
+    {
+      "text": "Привет",
+      "articleId": "1",
+      "userId": "1",
+      "id": "JmdmGmE"
+    },
+    {
+      "text": "Бла бла !!!",
+      "articleId": "1",
+      "userId": "1",
+      "id": "M4A4Xzu"
+    },
+    {
+      "text": "Бла ббла",
+      "articleId": "1",
+      "userId": "1",
+      "id": "XEwql0V"
+    },
+    {
+      "text": "Коммент",
+      "articleId": "1",
+      "userId": "1",
+      "id": "V3c6005"
     }
   ],
   "users": [

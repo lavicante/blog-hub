@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Button } from 'shared/Button/Button';
@@ -11,6 +11,7 @@ import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 
 import { getCommentText } from '../../model/selectors/getCommentText/getCommentText';
+import { getLoadingSendComment } from '../../model/selectors/getLoadingSendComment/getLoadingSendComment';
 import {
   addCommentFormActions,
   addCommentFormReducer,
@@ -31,6 +32,7 @@ export const AddCommentForm = memo(
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
     const textComment = useSelector(getCommentText);
+    const loadingSendComment = useSelector(getLoadingSendComment);
 
     useDynamicReducer(reducers);
 
@@ -46,6 +48,10 @@ export const AddCommentForm = memo(
       dispatch(addCommentFormActions.addTextComment(''));
     }, [dispatch, onSendComment, textComment]);
 
+    const buttonTitle = !textComment
+      ? t('Начтните вводить комментарий!')
+      : t('Нажмите, чтобы отправить');
+
     return (
       <div className={classNames(classes.AddCommentForm, [className])}>
         <Input
@@ -54,7 +60,13 @@ export const AddCommentForm = memo(
           value={textComment}
           placeholder={t('Введите текст комментария')}
         />
-        <Button onClick={onSendHandler}>{t('Отправить')}</Button>
+        <Button
+          title={buttonTitle}
+          disabled={loadingSendComment || !textComment}
+          onClick={onSendHandler}
+        >
+          {t('Отправить')}
+        </Button>
       </div>
     );
   }
