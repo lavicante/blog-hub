@@ -15,8 +15,8 @@ const Template: ComponentStory<typeof ArticleTextComponent> = (args) => (
   <ArticleTextComponent {...args} />
 );
 
-export const ArticleTextComponentPrimary = Template.bind({});
-ArticleTextComponentPrimary.args = {
+export const Normal = Template.bind({});
+Normal.args = {
   title: 'Заголовок',
   paragraphs: [
     'Программа, которую по традиции называют «Hello, world!», очень проста. Она выводит куда-либо фразу «Hello, world!», или другую подобную, средствами некоего языка.\n' +
