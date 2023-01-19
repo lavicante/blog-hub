@@ -17,7 +17,7 @@ export const ArticleTextComponent = memo(
         className={classes.title}
         align='left'
         tag='h3'
-        variant={TextVarianEnum.PRIMARY}
+        variant={TextVarianEnum.SECONDARY}
       >
         {title}
       </Text>
@@ -26,7 +26,8 @@ export const ArticleTextComponent = memo(
           key={paragraph}
           align='left'
           tag='p'
-          variant={TextVarianEnum.PRIMARY}
+          variant={TextVarianEnum.SECONDARY}
+          className={classes.paragraphs}
         >
           {paragraph}
         </Text>

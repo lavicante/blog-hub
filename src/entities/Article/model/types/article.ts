@@ -47,3 +47,8 @@ export interface Article {
   type: ArticleType[];
   blocks: ArticleBlock[];
 }
+
+export const enum ArticlesViewVariant {
+  LIST = 'LIST',
+  CARD = 'CARD',
+}
