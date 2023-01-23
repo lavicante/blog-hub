@@ -13,3 +13,10 @@
 .secondary {
     color: var(--secondary-color);
 }
+
+.button{
+    padding: 10px 15px;
+    border: 1px solid var(--invert-primary-color);
+    color: var(--invert-primary-color);
+    text-decoration: none;
+}

@@ -63,3 +63,65 @@
     width: 100%;
   }
 }
+
+.LIST {
+  width: 100%;
+
+  .headerArticle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .userInfo{
+    display: flex;
+    align-items: center;
+  }
+
+  .avatar{
+    margin-right: 15px;
+  }
+
+  .typeArticle, .title{
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .title{
+    margin-bottom: 10px;
+  }
+
+  .imageWrapper{
+    width: 100%;
+    height: 250px;
+  }
+
+  .poster{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .footer{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .readMoreBtn{
+    color: var(--secondary-color)
+  }
+
+  .countView{
+    display: flex;
+    align-items: center;
+  }
+
+  .view{
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

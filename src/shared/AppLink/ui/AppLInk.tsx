@@ -4,7 +4,12 @@ import { classNames } from 'shared/lib/classNames';
 
 import classes from './AppLink.module.scss';
 
-export enum AppLinkTheme {
+export const enum AppLinkVariant {
+  SIMPLE = 'simple',
+  BUTTON = 'button',
+}
+
+export const enum AppLinkTheme {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
 }
@@ -13,6 +18,7 @@ interface AppLInkProps extends LinkProps {
   className?: string;
   theme?: AppLinkTheme;
   children: ReactNode;
+  variant?: AppLinkVariant;
 }
 
 export const AppLInk = ({
@@ -20,11 +26,16 @@ export const AppLInk = ({
   children,
   to,
   theme = AppLinkTheme.PRIMARY,
+  variant = AppLinkVariant.SIMPLE,
   ...otherProps
 }: AppLInkProps) => (
   <Link
     to={to}
-    className={classNames(classes.AppLInk, [className, classes[theme]])}
+    className={classNames(classes.AppLInk, [
+      className,
+      classes[theme],
+      classes[variant],
+    ])}
     {...otherProps}
   >
     {children}

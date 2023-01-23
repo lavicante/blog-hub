@@ -29,6 +29,11 @@ const article: Article = {
   views: 1022,
   createdAt: '26.02.2022',
   type: [ArticleType.IT],
+  user: {
+    avatar: 'https://image.pngaaa.com/262/1721262-middle.png',
+    id: 1,
+    username: 'demirel',
+  },
   blocks: [
     {
       id: '1',

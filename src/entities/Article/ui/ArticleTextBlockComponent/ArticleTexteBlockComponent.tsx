@@ -8,16 +8,22 @@ interface ArticleTextComponentProps {
   className?: string;
   title: string;
   paragraphs: string[];
+  vatiantTextColor?: TextVarianEnum;
 }
 
 export const ArticleTextComponent = memo(
-  ({ className, paragraphs, title }: ArticleTextComponentProps) => (
+  ({
+    className,
+    paragraphs,
+    title,
+    vatiantTextColor,
+  }: ArticleTextComponentProps) => (
     <div className={classNames(classes.ArticleTextComponent, [className])}>
       <Text
         className={classes.title}
         align='left'
         tag='h3'
-        variant={TextVarianEnum.SECONDARY}
+        variant={vatiantTextColor || TextVarianEnum.INVERTED}
       >
         {title}
       </Text>
@@ -26,7 +32,7 @@ export const ArticleTextComponent = memo(
           key={paragraph}
           align='left'
           tag='p'
-          variant={TextVarianEnum.SECONDARY}
+          variant={vatiantTextColor || TextVarianEnum.INVERTED}
           className={classes.paragraphs}
         >
           {paragraph}

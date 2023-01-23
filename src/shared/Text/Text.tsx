@@ -11,6 +11,7 @@ export enum TextVarianEnum {
   SUCCESS = 'success',
   ERROR = 'error',
   SECONDARY = 'secondary',
+  INVERTED = 'inverted',
 }
 
 interface TextProps {

@@ -16,6 +16,11 @@ const article = {
   views: 1022,
   createdAt: '26.02.2022',
   type: ['IT'],
+  user: {
+    avatar: 'https://freesvg.org/img/myAvatar.png',
+    id: 1,
+    username: 'demirel',
+  },
   blocks: [
     {
       id: '1',
@@ -82,11 +87,9 @@ const Articles = memo(({ className }: ArticlesProps) => {
   const [view, setView] = useState(ArticlesViewVariant.LIST);
 
   const toggleView = () => {
-    if (view === 'LIST') {
-      setView(ArticlesViewVariant.CARD);
-    } else {
-      setView(ArticlesViewVariant.LIST);
-    }
+    setView((prev) =>
+      prev === 'LIST' ? ArticlesViewVariant.CARD : ArticlesViewVariant.LIST
+    );
   };
 
   return (
