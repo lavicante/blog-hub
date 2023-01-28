@@ -2,8 +2,8 @@ import { getUserAuthData } from 'entities/User';
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { AppLInk, AppLinkTheme } from 'shared/AppLink/ui/AppLInk';
 import { classNames } from 'shared/lib/classNames';
+import { AppLInk, AppLinkTheme } from 'shared/ui/AppLink/ui/AppLInk';
 import { ISidebarItem } from 'widgets/Switcher/types/sideBarItems';
 
 import classes from './SidebarItem.module.scss';

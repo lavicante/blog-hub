@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
+import { Button, VariantButton } from 'shared/ui/Button/Button';
 
 interface SwitcherButtonProps {
   className?: string;

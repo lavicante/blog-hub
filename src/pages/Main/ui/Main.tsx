@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input } from 'shared/Input/ui/Input';
+import { Input } from 'shared/ui/Input/ui/Input';
 
 const Main = memo(() => {
   const { t } = useTranslation('main');

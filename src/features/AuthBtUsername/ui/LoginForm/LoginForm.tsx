@@ -2,15 +2,15 @@ import { getLoginError } from 'features/AuthBtUsername/model/selectors/getLoginE
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Button } from 'shared/Button/Button';
 import {
   ReducersList,
   useDynamicReducer,
 } from 'shared/hooks/useDynamicReducer/useDynamicReducer';
-import { Input } from 'shared/Input/ui/Input';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
-import { Text, TextVarianEnum } from 'shared/Text/Text';
+import { Button } from 'shared/ui/Button/Button';
+import { Input } from 'shared/ui/Input/ui/Input';
+import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import { getLoading } from '../../model/selectors/getLoading/getLoading';
 import { getPassword } from '../../model/selectors/getPassword/getPassword';

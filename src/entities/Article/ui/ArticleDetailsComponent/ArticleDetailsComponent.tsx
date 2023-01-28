@@ -5,19 +5,19 @@ import { JSXElementConstructor, memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import CreateAtIcon from 'shared/assets/icons/calendar.svg';
 import ViewsIcon from 'shared/assets/icons/views.svg';
-import { Avatar } from 'shared/Avatar/ui/Avatar';
 import { skeletonThemeColor } from 'shared/constants/skeletonsTheme';
 import {
   ReducersList,
   useDynamicReducer,
 } from 'shared/hooks/useDynamicReducer/useDynamicReducer';
-import { Icon } from 'shared/Icon/ui/Icon';
 import { classNames } from 'shared/lib/classNames';
 import { DynamicReducerLoader } from 'shared/lib/components/dynamicReducerLoader/dynamicReducerLoader';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
-import { Sceleton } from 'shared/Skeleton/ui/Skeleton';
-import { Text, TextVarianEnum } from 'shared/Text/Text';
+import { Avatar } from 'shared/ui/Avatar/ui/Avatar';
+import { Icon } from 'shared/ui/Icon/ui/Icon';
+import { Sceleton } from 'shared/ui/Skeleton/ui/Skeleton';
+import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import {
   getArticle,

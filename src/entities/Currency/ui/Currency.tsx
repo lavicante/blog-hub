@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
-import { Select, SelectOptions } from 'shared/Select/ui/Select';
+import { Select, SelectOptions } from 'shared/ui/Select/ui/Select';
 
 import { Currency } from '../model/types/currency';
 

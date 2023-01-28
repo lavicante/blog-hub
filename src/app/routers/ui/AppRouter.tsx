@@ -7,7 +7,6 @@ import { AppRoutesProps, routersConfig } from '../config/routerConfig';
 
 const AppRouter = () => {
   const renderWithRequireAuth = useCallback((route: AppRoutesProps) => {
-    console.log(route);
     const element = (
       <Suspense fallback={<PageLoader />}>
         <div className='content-wrapper'>{route.element}</div>

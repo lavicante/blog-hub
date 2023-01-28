@@ -3,8 +3,8 @@ import { LoginModal } from 'features/AuthBtUsername';
 import React, { memo, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
+import { Button, VariantButton } from 'shared/ui/Button/Button';
 
 import classes from './Navbar.module.scss';
 

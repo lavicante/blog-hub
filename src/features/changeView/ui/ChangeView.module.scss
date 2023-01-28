@@ -1,0 +1,17 @@
+.ChangeView{
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
+.ChangeViewIcon{
+  fill: var(--primary-color);
+}
+
+.ButtonIcon{
+  margin-right: 5px;
+}
+
+.selected{
+  fill: var(--red);
+}

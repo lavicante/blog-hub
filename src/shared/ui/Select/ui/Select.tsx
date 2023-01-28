@@ -1,5 +1,5 @@
 import { ChangeEvent, memo, useMemo } from 'react';
-import { classNames, Mode } from 'shared/lib/classNames/';
+import { classNames, Mode } from 'shared/lib/classNames';
 
 import classes from './Select.module.scss';
 

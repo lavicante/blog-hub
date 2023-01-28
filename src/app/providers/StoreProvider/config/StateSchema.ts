@@ -15,6 +15,7 @@ import { AddCommentFormSchema } from 'features/addCommentForm';
 import { LoginSchema } from 'features/AuthBtUsername';
 import { ProfileSchema } from 'features/EditableProfileCard';
 import { ArticleDetailCommentSchema } from 'pages/ArticleDetails';
+import { ArticlesSchema } from 'pages/Articles';
 import { NavigateOptions } from 'react-router/dist/lib/context';
 
 export interface StateSchema {
@@ -24,6 +25,7 @@ export interface StateSchema {
   articleDetails?: ArticleDetailsSchema;
   articleDetailsComment?: ArticleDetailCommentSchema;
   addCommentForm?: AddCommentFormSchema;
+  articles?: ArticlesSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

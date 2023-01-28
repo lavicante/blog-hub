@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 import { classNames } from 'shared/lib/classNames';
-import { Portal } from 'shared/Portal/Portal';
+import { Portal } from 'shared/ui/Portal/Portal';
 
 import classes from './Modal.module.scss';
 

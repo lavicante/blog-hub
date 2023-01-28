@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
+import { Button } from 'shared/ui/Button/Button';
 
 import classes from './PageError.module.scss';
 

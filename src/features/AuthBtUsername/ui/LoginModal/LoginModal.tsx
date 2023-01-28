@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { classNames } from 'shared/lib/classNames';
-import { Loader } from 'shared/Loader/ui/Loader';
-import { Modal } from 'shared/Modal/ui/Modal';
+import { Loader } from 'shared/ui/Loader/ui/Loader';
+import { Modal } from 'shared/ui/Modal/ui/Modal';
 
 const LoginForm = React.lazy(() => import('../LoginForm/LoginForm'));
 

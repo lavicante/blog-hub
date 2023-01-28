@@ -4,11 +4,11 @@ import React, { memo, Suspense, useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
-import { Loader } from 'shared/Loader/ui/Loader';
-import { Modal } from 'shared/Modal/ui/Modal';
-import { Text, TextVarianEnum } from 'shared/Text/Text';
+import { Button, VariantButton } from 'shared/ui/Button/Button';
+import { Loader } from 'shared/ui/Loader/ui/Loader';
+import { Modal } from 'shared/ui/Modal/ui/Modal';
+import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import { getErrorProfileData } from '../../model/selectors/getErrorProfileData/getErrorProfileData';
 import { getLoadingProfileData } from '../../model/selectors/getLoadingProfileData/getLoadingProfileData';

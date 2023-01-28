@@ -1,9 +1,9 @@
 import React, { memo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, SizeButton, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
-import { SwitcherButton } from 'shared/SwitcherButton/ui/SwitcherButton';
-import { ThemeButton } from 'shared/ThemeButton/ui/ThemeButton';
+import { Button, SizeButton, VariantButton } from 'shared/ui/Button/Button';
+import { SwitcherButton } from 'shared/ui/SwitcherButton/ui/SwitcherButton';
+import { ThemeButton } from 'shared/ui/ThemeButton/ui/ThemeButton';
 import { getSidebarItems } from 'widgets/Switcher/selectors/getSideBarItems/getSidebarItems';
 import { SidebarItem } from 'widgets/Switcher/ui/SidebarItem/SidebarItem';
 

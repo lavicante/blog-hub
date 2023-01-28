@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { CodeBlock } from 'shared/CodeBlock/ui/CodeBlock';
 import { classNames } from 'shared/lib/classNames';
+import { CodeBlock } from 'shared/ui/CodeBlock/ui/CodeBlock';
 
 import classes from './ArticleCodeBlockComponent.module.scss';
 

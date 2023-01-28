@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import CopyIcon from 'shared/assets/icons/copy-icon.svg';
-import { Button, VariantButton } from 'shared/Button/Button';
 import { classNames } from 'shared/lib/classNames';
+import { Button, VariantButton } from 'shared/ui/Button/Button';
 
 import classes from './CodeBlock.module.scss';
 

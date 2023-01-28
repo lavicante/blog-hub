@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames';
-import { Text, TextVarianEnum } from 'shared/Text/Text';
+import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';

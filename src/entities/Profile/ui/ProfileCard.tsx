@@ -1,10 +1,10 @@
 import { Profile } from 'features/EditableProfileCard';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Avatar } from 'shared/Avatar/ui/Avatar';
 import { AVATAR_PLACEHOLDER } from 'shared/constants/common';
 import { classNames } from 'shared/lib/classNames';
-import { Text, TextVarianEnum } from 'shared/Text/Text';
+import { Avatar } from 'shared/ui/Avatar/ui/Avatar';
+import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import classes from './ProfileCard.module.scss';
 

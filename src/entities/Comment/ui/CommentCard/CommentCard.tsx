@@ -1,10 +1,10 @@
 import { AppPath } from 'app/routers/config/routerConfig';
-import { AppLInk } from 'shared/AppLink/ui/AppLInk';
-import { Avatar } from 'shared/Avatar/ui/Avatar';
 import { AVATAR_PLACEHOLDER } from 'shared/constants/common';
 import { classNames } from 'shared/lib/classNames';
-import { CommentsSkeleton } from 'shared/Skeleton/ui/CommentsSkeleton';
-import { Text, TextVarianEnum } from 'shared/Text/Text';
+import { AppLInk } from 'shared/ui/AppLink/ui/AppLInk';
+import { Avatar } from 'shared/ui/Avatar/ui/Avatar';
+import { CommentsSkeleton } from 'shared/ui/Skeleton/ui/CommentsSkeleton';
+import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import { Comment } from '../../model/types/comment';
 import classes from './CommentCard.module.scss';
