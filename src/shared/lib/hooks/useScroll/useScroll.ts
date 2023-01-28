@@ -13,9 +13,11 @@ export const useScroll = ({
 }: IUseScrollProps) => {
   let observer: IntersectionObserver | null = null;
   useEffect(() => {
-    if (wrapperRef.current && targetRef.current && callback) {
+    const wrapper = wrapperRef.current;
+    const target = targetRef.current;
+    if (wrapper && target && callback) {
       const options = {
-        root: wrapperRef.current,
+        root: wrapper,
         rootMargin: '0px',
         threshold: 1.0,
       };
@@ -27,12 +29,11 @@ export const useScroll = ({
         }
       }, options);
 
-      observer.observe(targetRef.current);
+      observer.observe(target);
     }
     return () => {
-      if (targetRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer?.unobserve(targetRef.current);
+      if (target && observer) {
+        observer.unobserve(target);
       }
     };
   }, [wrapperRef, targetRef, callback]);
