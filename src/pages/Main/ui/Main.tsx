@@ -1,6 +1,7 @@
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/ui/Input/ui/Input';
+import { Page } from 'shared/ui/Page/ui/Page';
 
 const Main = memo(() => {
   const { t } = useTranslation('main');
@@ -12,10 +13,10 @@ const Main = memo(() => {
   };
 
   return (
-    <>
+    <Page>
       <h1>{t('Главная')}</h1>
       <Input value={value} onCange={onChange} />
-    </>
+    </Page>
   );
 });
 

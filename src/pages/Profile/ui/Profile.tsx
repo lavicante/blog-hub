@@ -3,8 +3,7 @@ import {
   fetchProfile,
   profileReducer,
 } from 'features/EditableProfileCard';
-import { memo, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   ReducersList,
@@ -13,6 +12,7 @@ import {
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
+import { Page } from 'shared/ui/Page/ui/Page';
 
 interface ProfileProps {
   className?: string;
@@ -32,9 +32,9 @@ const Profile = memo(({ className }: ProfileProps) => {
   });
 
   return (
-    <div className={classNames('', [className])}>
+    <Page className={classNames('', [className])}>
       <EditableProfileCard />
-    </div>
+    </Page>
   );
 });
 

@@ -18,14 +18,6 @@ export const ArticleList = memo(
   ({ className, articles, view, loading }: ArticleListProps) => {
     const { t } = useTranslation();
 
-    if (loading) {
-      return (
-        <Text tag='p' variant={TextVarianEnum.PRIMARY}>
-          идет загрузка статей...
-        </Text>
-      );
-    }
-
     return (
       <div className={classNames(classes.ArticleList, [className])}>
         {articles.length > 0 ? (
@@ -35,6 +27,11 @@ export const ArticleList = memo(
         ) : (
           <Text variant={TextVarianEnum.PRIMARY} tag='h3'>
             {t('Статей пока нет!')}
+          </Text>
+        )}
+        {loading && (
+          <Text tag='p' variant={TextVarianEnum.PRIMARY}>
+            идет загрузка статей...
           </Text>
         )}
       </div>

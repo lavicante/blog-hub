@@ -9,14 +9,18 @@ import {
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
+import { Page } from 'shared/ui/Page/ui/Page';
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import {
   getArticlesError,
   getArticlesLoading,
+  getPageCanLoad,
+  getPageNumber,
   getView,
 } from '../../model/selectors/getArticlesInfo';
 import { fetchArticles } from '../../model/services/fetchArticles';
+import { fetchArticlesNextPage } from '../../model/services/fetchNextArticlesPage';
 import {
   articlesActions,
   articlesReducer,
@@ -37,13 +41,23 @@ const Articles = memo(({ className }: ArticlesProps) => {
   const isLoading = useSelector(getArticlesLoading);
   const isError = useSelector(getArticlesError);
   const view = useSelector(getView);
+  const page = useSelector(getPageNumber);
+  const canLoad = useSelector(getPageCanLoad);
 
   useDynamicReducer(reducers);
 
   useInitialProject(() => {
-    dispatch(fetchArticles());
     dispatch(articlesActions.initView());
+    dispatch(
+      fetchArticles({
+        page: 1,
+      })
+    );
   });
+
+  const fetchNextPage = useCallback(() => {
+    dispatch(fetchArticlesNextPage());
+  }, [dispatch]);
 
   const onChangeView = useCallback(
     (view: ArticlesViewVariant) => {
@@ -61,10 +75,13 @@ const Articles = memo(({ className }: ArticlesProps) => {
   }
 
   return (
-    <div className={classNames('', [className])}>
+    <Page
+      callbackEndScroll={fetchNextPage}
+      className={classNames('', [className])}
+    >
       <ChangeView view={view} onChangeView={onChangeView} />
       <ArticleList articles={articles} view={view} loading={isLoading} />
-    </div>
+    </Page>
   );
 });
 

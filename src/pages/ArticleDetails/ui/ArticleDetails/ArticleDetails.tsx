@@ -15,6 +15,7 @@ import {
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
+import { Page } from 'shared/ui/Page/ui/Page';
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import { addCommentFormService } from '../../model/services/addCommentFormService/addCommentformService';
@@ -56,20 +57,20 @@ const ArticleDetails = memo(({ className }: ArticleDetailsProps) => {
 
   if (!id) {
     return (
-      <div className={classNames(classes.ArticleDetails, [className])}>
+      <Page className={classNames(classes.ArticleDetails, [className])}>
         <Text tag='h1' variant={TextVarianEnum.PRIMARY}>
           Статья не найдена!
         </Text>
-      </div>
+      </Page>
     );
   }
 
   return (
-    <div className={classNames(classes.ArticleDetails, [className])}>
+    <Page className={classNames(classes.ArticleDetails, [className])}>
       <ArticleDetailsComponent id={id} />
       <AddCommentForm onSendComment={onSubmitComment} />
       <CommentList comments={comments} isLoading={isLoading} />
-    </div>
+    </Page>
   );
 });
 

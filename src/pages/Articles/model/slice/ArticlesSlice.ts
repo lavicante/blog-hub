@@ -8,6 +8,7 @@ import { Article, ArticlesViewVariant } from 'entities/Article';
 import { Comment } from 'entities/Comment';
 import { fetchCommentByArticleId } from 'pages/ArticleDetails/model/services/fetchCommentByArticleId';
 import { ArticlesSchema } from 'pages/Articles';
+import { LIMIT } from 'pages/Articles/model/constants/pagination';
 import { fetchArticles } from 'pages/Articles/model/services/fetchArticles';
 
 const articlesAdapter = createEntityAdapter<Article>({
@@ -19,21 +20,29 @@ export const getArticles = articlesAdapter.getSelectors<StateSchema>(
 );
 
 const articlesSlice = createSlice({
-  name: 'articleDetailsComments',
+  name: 'articlesSlice',
   initialState: articlesAdapter.getInitialState<ArticlesSchema>({
     isLoading: false,
     error: '',
     ids: [],
     entities: {},
     view: ArticlesViewVariant.CARD,
+    page: 1,
+    canLoad: true,
   }),
   reducers: {
     setView: (state, action: PayloadAction<ArticlesViewVariant>) => {
+      state.limit = LIMIT[action.payload];
       state.view = action.payload;
       localStorage.setItem('view', action.payload);
     },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
     initView: (state) => {
-      state.view = localStorage.getItem('view') as ArticlesViewVariant;
+      const view = localStorage.getItem('view') as ArticlesViewVariant;
+      state.view = view;
+      state.limit = LIMIT[view];
     },
   },
   extraReducers: (builder) => {
@@ -42,7 +51,8 @@ const articlesSlice = createSlice({
       (state, action: PayloadAction<Article[]>) => {
         state.error = undefined;
         state.isLoading = false;
-        articlesAdapter.setAll(state, action.payload);
+        articlesAdapter.addMany(state, action.payload);
+        state.canLoad = action.payload.length === LIMIT[state.view];
       }
     );
     builder.addCase(fetchArticles.pending, (state, action) => {
