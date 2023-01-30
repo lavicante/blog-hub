@@ -30,6 +30,7 @@ export const ChangeView = memo(
     <div className={classNames(classes.ChangeView, [className])}>
       {ViewVariantList.map((variant) => (
         <Button
+          key={variant.view}
           variant={VariantButton.CLEAR}
           onClick={() => onChangeView(variant.view)}
           className={classes.ButtonIcon}

@@ -7,6 +7,7 @@ import { Dispatch, memo, SetStateAction, useCallback, useMemo } from 'react';
 import { Simulate } from 'react-dom/test-utils';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { Button, VariantButton } from 'shared/ui/Button/Button';
@@ -15,11 +16,8 @@ import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
 import { getProfileData } from '../../model/selectors/getProfileData/getProfileData';
 import { updateProfile } from '../../model/services/updateProfile/updateProfile';
-import classes from './EditableProfileModal.module.scss';
-import error = Simulate.error;
-import { toast } from 'react-toastify';
-
 import { ValidationErrors } from '../../model/types/profile';
+import classes from './EditableProfileModal.module.scss';
 
 interface EditableProfileModalProps {
   className?: string;
@@ -113,8 +111,12 @@ const EditableProfileModal = memo(
           {t('Редактировать профиль')}
         </Text>
         {validateErrors?.length > 0 &&
-          validateErrors.map((error) => (
-            <Text tag='span' variant={TextVarianEnum.ERROR}>
+          validateErrors.map((error, index) => (
+            <Text
+              key={`${error}-${index}`}
+              tag='span'
+              variant={TextVarianEnum.ERROR}
+            >
               {validateErrorsMap[error]}
             </Text>
           ))}

@@ -15,8 +15,7 @@ import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 import {
   getArticlesError,
   getArticlesLoading,
-  getPageCanLoad,
-  getPageNumber,
+  getMounted,
   getView,
 } from '../../model/selectors/getArticlesInfo';
 import { fetchArticles } from '../../model/services/fetchArticles';
@@ -41,18 +40,19 @@ const Articles = memo(({ className }: ArticlesProps) => {
   const isLoading = useSelector(getArticlesLoading);
   const isError = useSelector(getArticlesError);
   const view = useSelector(getView);
-  const page = useSelector(getPageNumber);
-  const canLoad = useSelector(getPageCanLoad);
+  const isMounted = useSelector(getMounted);
 
   useDynamicReducer(reducers);
 
   useInitialProject(() => {
-    dispatch(articlesActions.initView());
-    dispatch(
-      fetchArticles({
-        page: 1,
-      })
-    );
+    if (!isMounted) {
+      dispatch(articlesActions.initView());
+      dispatch(
+        fetchArticles({
+          page: 1,
+        })
+      );
+    }
   });
 
   const fetchNextPage = useCallback(() => {

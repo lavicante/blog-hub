@@ -29,6 +29,7 @@ const articlesSlice = createSlice({
     view: ArticlesViewVariant.CARD,
     page: 1,
     canLoad: true,
+    _isMounted: false,
   }),
   reducers: {
     setView: (state, action: PayloadAction<ArticlesViewVariant>) => {
@@ -53,6 +54,7 @@ const articlesSlice = createSlice({
         state.isLoading = false;
         articlesAdapter.addMany(state, action.payload);
         state.canLoad = action.payload.length === LIMIT[state.view];
+        state._isMounted = true;
       }
     );
     builder.addCase(fetchArticles.pending, (state, action) => {

@@ -4,9 +4,7 @@ import {
   Reducer,
   ReducersMapObject,
 } from '@reduxjs/toolkit';
-import { To } from '@remix-run/router';
 import { userReducer } from 'entities/User';
-import { NavigateOptions } from 'react-router/dist/lib/context';
 import { $api } from 'shared/lib/api/api';
 
 import { createReducerManager } from './reducerManager';

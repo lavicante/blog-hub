@@ -8,10 +8,12 @@ const getView = (state: StateSchema) =>
 const getPageNumber = (state: StateSchema) => state.articles?.page || 1;
 const getPageLimit = (state: StateSchema) => state.articles?.limit;
 const getPageCanLoad = (state: StateSchema) => state.articles?.canLoad;
+const getMounted = (state: StateSchema) => state.articles?._isMounted;
 
 export {
   getArticlesError,
   getArticlesLoading,
+  getMounted,
   getPageCanLoad,
   getPageLimit,
   getPageNumber,
