@@ -9,8 +9,8 @@ import {
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
-import { Page } from 'shared/ui/Page/ui/Page';
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
+import { Page } from 'widgets/Page/ui/Page';
 
 import {
   getArticlesError,

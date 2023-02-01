@@ -54,6 +54,7 @@ export const ArticleDetailsComponent = memo(
         case ArticleBlockType.TEXT:
           return (
             <ArticleTextComponent
+              key={block.id}
               className={classes.block}
               title={block.title}
               paragraphs={block.paragraphs}
@@ -62,6 +63,7 @@ export const ArticleDetailsComponent = memo(
         case ArticleBlockType.IMAGE:
           return (
             <ArticleImageComponent
+              key={block.id}
               title={block.title}
               src={block.src}
               className={classes.block}
@@ -69,7 +71,11 @@ export const ArticleDetailsComponent = memo(
           );
         case ArticleBlockType.CODE:
           return (
-            <ArticleCodeComponent code={block.code} className={classes.block} />
+            <ArticleCodeComponent
+              key={block.id}
+              code={block.code}
+              className={classes.block}
+            />
           );
         default:
           return null;

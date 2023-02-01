@@ -12,7 +12,7 @@ import {
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
 import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
-import { Page } from 'shared/ui/Page/ui/Page';
+import { Page } from 'widgets/Page/ui/Page';
 
 interface ProfileProps {
   className?: string;
