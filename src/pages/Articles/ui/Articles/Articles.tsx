@@ -1,6 +1,5 @@
-import { ArticleList, ArticlesViewVariant } from 'entities/Article';
-import { ChangeView } from 'features/changeView';
-import { memo, useCallback } from 'react';
+import { ArticleList } from 'entities/Article';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
   ReducersList,
@@ -8,14 +7,19 @@ import {
 } from 'shared/hooks/useDynamicReducer/useDynamicReducer';
 import { classNames } from 'shared/lib/classNames';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
+import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitialProject';
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
+import { ArticlesToolBar } from 'widgets/ArticlesToolBar';
 import { Page } from 'widgets/Page/ui/Page';
 
 import {
   getArticlesError,
   getArticlesLoading,
   getMounted,
+  getSearch,
+  getSortDirection,
+  getSortField,
   getView,
 } from '../../model/selectors/getArticlesInfo';
 import { fetchArticles } from '../../model/services/fetchArticles';
@@ -41,6 +45,23 @@ const Articles = memo(({ className }: ArticlesProps) => {
   const isError = useSelector(getArticlesError);
   const view = useSelector(getView);
   const isMounted = useSelector(getMounted);
+  const sortField = useSelector(getSortField);
+  const sortDirection = useSelector(getSortDirection);
+  const search = useSelector(getSearch);
+
+  const fetchData = useCallback(() => {
+    dispatch(fetchArticles({ page: 1, replace: true }));
+  }, [dispatch]);
+
+  const debouncedFetch = useDebounce(fetchData, 500);
+
+  useEffect(() => {
+    fetchData();
+  }, [sortField, sortDirection, dispatch, fetchData]);
+
+  useEffect(() => {
+    debouncedFetch();
+  }, [debouncedFetch, search]);
 
   useDynamicReducer(reducers);
 
@@ -59,13 +80,6 @@ const Articles = memo(({ className }: ArticlesProps) => {
     dispatch(fetchArticlesNextPage());
   }, [dispatch]);
 
-  const onChangeView = useCallback(
-    (view: ArticlesViewVariant) => {
-      dispatch(articlesActions.setView(view));
-    },
-    [dispatch]
-  );
-
   if (isError) {
     return (
       <Text variant={TextVarianEnum.PRIMARY} tag='p'>
@@ -79,7 +93,7 @@ const Articles = memo(({ className }: ArticlesProps) => {
       callbackEndScroll={fetchNextPage}
       className={classNames('', [className])}
     >
-      <ChangeView view={view} onChangeView={onChangeView} />
+      <ArticlesToolBar />
       <ArticleList articles={articles} view={view} loading={isLoading} />
     </Page>
   );

@@ -10,6 +10,10 @@ const getPageLimit = (state: StateSchema) => state.articles?.limit;
 const getPageCanLoad = (state: StateSchema) => state.articles?.canLoad;
 const getMounted = (state: StateSchema) => state.articles?._isMounted;
 
+const getSortField = (state: StateSchema) => state.articles?.sortField;
+const getSortDirection = (state: StateSchema) => state.articles?.direction;
+const getSearch = (state: StateSchema) => state.articles?.serach;
+
 export {
   getArticlesError,
   getArticlesLoading,
@@ -17,5 +21,8 @@ export {
   getPageCanLoad,
   getPageLimit,
   getPageNumber,
+  getSearch,
+  getSortDirection,
+  getSortField,
   getView,
 };

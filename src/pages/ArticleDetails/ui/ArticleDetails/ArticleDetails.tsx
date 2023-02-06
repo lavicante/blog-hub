@@ -18,6 +18,7 @@ import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitial
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 import { Page } from 'widgets/Page/ui/Page';
 
+import { getLoadingArticles } from '../../model/selectors/getLoadingArticles';
 import { addCommentFormService } from '../../model/services/addCommentFormService/addCommentformService';
 import { fetchCommentByArticleId } from '../../model/services/fetchCommentByArticleId';
 import {
@@ -44,12 +45,11 @@ const ArticleDetails = memo(({ className }: ArticleDetailsProps) => {
   });
 
   const comments = useSelector(getArticleComments.selectAll);
-  const isLoading = useSelector(getLoadingComments);
+  const isLoadingComments = useSelector(getLoadingComments);
   const isError = useSelector(getErrorComments);
 
   const onSubmitComment = useCallback(
     (value: string) => {
-      console.log(value);
       dispatch(addCommentFormService(value));
     },
     [dispatch]
@@ -69,7 +69,7 @@ const ArticleDetails = memo(({ className }: ArticleDetailsProps) => {
     <Page className={classNames(classes.ArticleDetails, [className])}>
       <ArticleDetailsComponent id={id} />
       <AddCommentForm onSendComment={onSubmitComment} />
-      <CommentList comments={comments} isLoading={isLoading} />
+      <CommentList comments={comments} isLoading={isLoadingComments} />
     </Page>
   );
 });

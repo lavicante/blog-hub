@@ -11,7 +11,7 @@ interface CurrencyProps {
   onChange: (value: Country) => void;
 }
 
-const options: SelectOptions[] = [
+const options: SelectOptions<Country>[] = [
   {
     value: Country.RUS,
     option: Country.RUS,

@@ -11,7 +11,7 @@ interface CurrencyProps {
   onChange: (value: Currency) => void;
 }
 
-const options: SelectOptions[] = [
+const options: SelectOptions<Currency>[] = [
   {
     value: Currency.RUB,
     option: Currency.RUB,
