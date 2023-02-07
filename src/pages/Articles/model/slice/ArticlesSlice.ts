@@ -4,7 +4,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { Article, ArticlesViewVariant } from 'entities/Article';
+import { Article, ArticlesViewVariant, ArticleType } from 'entities/Article';
 import { SortArticlesDirection, SortArticlesField } from 'features/SortArticle';
 import { ArticlesSchema } from 'pages/Articles';
 import { LIMIT } from 'pages/Articles/model/constants/pagination';
@@ -32,6 +32,7 @@ const articlesSlice = createSlice({
     direction: SortArticlesDirection.ASC,
     sortField: SortArticlesField.TITLE,
     serach: '',
+    type: ArticleType.ALL,
   }),
   reducers: {
     setView: (state, action: PayloadAction<ArticlesViewVariant>) => {
@@ -50,6 +51,9 @@ const articlesSlice = createSlice({
     },
     setSearch: (state, action: PayloadAction<string>) => {
       state.serach = action.payload;
+    },
+    setType: (state, action: PayloadAction<ArticleType>) => {
+      state.type = action.payload;
     },
     initView: (state) => {
       const view = localStorage.getItem('view') as ArticlesViewVariant;

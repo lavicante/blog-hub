@@ -11,7 +11,7 @@ export const SortArticlesByFields: SelectOptions<SortArticlesField>[] = [
     value: SortArticlesField.VIEWS,
   },
   {
-    option: 'По названию',
+    option: 'Названию',
     value: SortArticlesField.TITLE,
   },
 ];

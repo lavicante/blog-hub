@@ -1,5 +1,5 @@
 import { EntityState } from '@reduxjs/toolkit';
-import { Article, ArticlesViewVariant } from 'entities/Article';
+import { Article, ArticlesViewVariant, ArticleType } from 'entities/Article';
 import { SortArticlesDirection, SortArticlesField } from 'features/SortArticle';
 
 export interface ArticlesSchema extends EntityState<Article> {
@@ -16,5 +16,7 @@ export interface ArticlesSchema extends EntityState<Article> {
   direction: SortArticlesDirection;
 
   serach: string;
+
+  type: ArticleType;
   _isMounted: boolean;
 }

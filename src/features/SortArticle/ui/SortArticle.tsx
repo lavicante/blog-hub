@@ -3,7 +3,7 @@ import {
   getSortsDirection,
   getSortsField,
 } from 'features/SortArticle/model/selectors/getSortsAndOrder';
-import { articlesActions } from 'pages/Articles';
+import { articlesActions, fetchArticles } from 'pages/Articles';
 import React, { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/UseAppDispatch/useAppDispatch';
@@ -23,6 +23,8 @@ export const SortArticle = memo(() => {
   const onChangeSortField = useCallback(
     (value: SortArticlesField) => {
       dispatch(articlesActions.setSort(value));
+      dispatch(articlesActions.setPage(1));
+      dispatch(fetchArticles({ page: 1, replace: true }));
     },
     [dispatch]
   );
@@ -30,6 +32,8 @@ export const SortArticle = memo(() => {
   const onChangeSortDirection = useCallback(
     (value: SortArticlesDirection) => {
       dispatch(articlesActions.setDirection(value));
+      dispatch(articlesActions.setPage(1));
+      dispatch(fetchArticles({ page: 1, replace: true }));
     },
     [dispatch]
   );

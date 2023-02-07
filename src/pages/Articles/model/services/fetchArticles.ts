@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { Article } from 'entities/Article';
+import { Article, ArticleType } from 'entities/Article';
 import { addQueryParams } from 'shared/lib/addQueryParams/addQueryParams';
 
 import {
@@ -8,6 +8,7 @@ import {
   getSearch,
   getSortDirection,
   getSortField,
+  getTypeArticle,
 } from '../selectors/getArticlesInfo';
 
 interface Args {
@@ -28,12 +29,14 @@ export const fetchArticles = createAsyncThunk<
     const sortField = getSortField(getState());
     const sortDirection = getSortDirection(getState());
     const search = getSearch(getState());
+    const type = getTypeArticle(getState());
 
     try {
       addQueryParams({
         sort: sortField,
         order: sortDirection,
         search,
+        type,
       });
       const response = await api.get<Article[]>('/articles', {
         params: {
@@ -43,6 +46,7 @@ export const fetchArticles = createAsyncThunk<
           _expand: 'user',
           _limit: limit,
           _page: page,
+          type: type === ArticleType.ALL ? undefined : type,
         },
       });
 

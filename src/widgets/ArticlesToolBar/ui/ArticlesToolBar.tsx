@@ -1,3 +1,4 @@
+import { ArticlesTabs } from 'features/ArticleTabs';
 import { ChangeView } from 'features/ChangeView';
 import { SearchArticle } from 'features/SearchArticle';
 import { SortArticle } from 'features/SortArticle';
@@ -18,5 +19,6 @@ export const ArticlesToolBar = memo(({ className }: NavbarProps) => (
     </div>
 
     <SearchArticle />
+    <ArticlesTabs />
   </div>
 ));
