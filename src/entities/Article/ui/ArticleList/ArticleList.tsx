@@ -1,5 +1,5 @@
 import { ArticleListItem } from 'entities/Article/ui/ArticleListItem/ArticleListItem';
-import { memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
@@ -12,17 +12,23 @@ interface ArticleListProps {
   articles: Article[];
   view: ArticlesViewVariant;
   loading?: boolean;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleList = memo(
-  ({ className, articles, view, loading }: ArticleListProps) => {
+  ({ className, articles, view, loading, target }: ArticleListProps) => {
     const { t } = useTranslation();
 
     return (
       <div className={classNames(classes.ArticleList, [className])}>
         {articles.length > 0 ? (
           articles.map((article) => (
-            <ArticleListItem key={article.id} article={article} view={view} />
+            <ArticleListItem
+              target={target}
+              key={article.id}
+              article={article}
+              view={view}
+            />
           ))
         ) : (
           <Text variant={TextVarianEnum.PRIMARY} tag='h3'>

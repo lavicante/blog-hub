@@ -1,4 +1,8 @@
-import { ArticleDetailsComponent } from 'entities/Article';
+import {
+  ArticleDetailsComponent,
+  ArticleList,
+  ArticlesViewVariant,
+} from 'entities/Article';
 import { CommentList } from 'entities/Comment';
 import { AddCommentForm } from 'features/addCommentForm';
 import {
@@ -18,13 +22,21 @@ import { useInitialProject } from 'shared/lib/hooks/useInitialProject/useInitial
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 import { Page } from 'widgets/Page/ui/Page';
 
-import { getLoadingArticles } from '../../model/selectors/getLoadingArticles';
-import { addCommentFormService } from '../../model/services/addCommentFormService/addCommentformService';
+import {
+  getErrorFetchRecomendation,
+  getLoadingRecomendation,
+} from '../../model/selectors/getRecomendation';
+import { addCommentFormService } from '../../model/services/addCommentformService';
+import { fetchArticlesRecomendation } from '../../model/services/fetchArticlesRecomendation';
 import { fetchCommentByArticleId } from '../../model/services/fetchCommentByArticleId';
 import {
   articleDetailsCommentsReducer,
   getArticleComments,
 } from '../../model/slices/articleDetailsCommentsSlice';
+import {
+  articleDetailsPageRecomendationReducer,
+  getArticlesRecomendation,
+} from '../../model/slices/articleDetailsPageRecomendationSlice';
 import classes from './ArticleDetails.module.scss';
 
 interface ArticleDetailsProps {
@@ -33,15 +45,21 @@ interface ArticleDetailsProps {
 
 const reducers: ReducersList = {
   articleDetailsComment: articleDetailsCommentsReducer,
+  articelsDetailPageRecomendation: articleDetailsPageRecomendationReducer,
 };
 
 const ArticleDetails = memo(({ className }: ArticleDetailsProps) => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
 
+  const recomendation = useSelector(getArticlesRecomendation.selectAll);
+  const isLoadingRecomendation = useSelector(getLoadingRecomendation);
+  const isErrorRecomendation = useSelector(getErrorFetchRecomendation);
+
   useDynamicReducer(reducers);
   useInitialProject(() => {
     dispatch(fetchCommentByArticleId(id));
+    dispatch(fetchArticlesRecomendation());
   });
 
   const comments = useSelector(getArticleComments.selectAll);
@@ -68,6 +86,15 @@ const ArticleDetails = memo(({ className }: ArticleDetailsProps) => {
   return (
     <Page className={classNames(classes.ArticleDetails, [className])}>
       <ArticleDetailsComponent id={id} />
+      <Text tag='h3' variant={TextVarianEnum.PRIMARY} align='left'>
+        Рекомендуем к прочтению!
+      </Text>
+      <ArticleList
+        target='_blank'
+        className={classes.recommendation}
+        articles={recomendation}
+        view={ArticlesViewVariant.CARD}
+      />
       <AddCommentForm onSendComment={onSubmitComment} />
       <CommentList comments={comments} isLoading={isLoadingComments} />
     </Page>

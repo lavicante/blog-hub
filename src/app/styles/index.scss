@@ -16,3 +16,16 @@ body {
 .content-page {
     display: flex;
 }
+
+*::-webkit-scrollbar {
+    height: 10px;
+    width: 12px;               /* ширина scrollbar */
+}
+*::-webkit-scrollbar-track {
+    background: var(--invert-primary-color);        /* цвет дорожки */
+}
+*::-webkit-scrollbar-thumb {
+    background-color: var(--invert-primary-color);    /* цвет плашки */
+    border-radius: 20px;       /* закругления плашки */
+    border: 3px solid var(--primary-color);  /* padding вокруг плашки */
+}

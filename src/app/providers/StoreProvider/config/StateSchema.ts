@@ -15,7 +15,10 @@ import { AddCommentFormSchema } from 'features/addCommentForm';
 import { LoginSchema } from 'features/AuthBtUsername';
 import { ProfileSchema } from 'features/EditableProfileCard';
 import { ScrollSaveSchema } from 'features/scrollSave';
-import { ArticleDetailCommentSchema } from 'pages/ArticleDetails';
+import {
+  ArticleDetailCommentSchema,
+  ArticleDetailsPageRecomendation,
+} from 'pages/ArticleDetails';
 import { ArticlesSchema } from 'pages/Articles';
 import { NavigateOptions } from 'react-router/dist/lib/context';
 
@@ -28,6 +31,7 @@ export interface StateSchema {
   articleDetailsComment?: ArticleDetailCommentSchema;
   addCommentForm?: AddCommentFormSchema;
   articles?: ArticlesSchema;
+  articelsDetailPageRecomendation?: ArticleDetailsPageRecomendation;
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -1,6 +1,6 @@
 import { AppPath } from 'app/routers/config/routerConfig';
 import { ArticleTextComponent } from 'entities/Article/ui/ArticleTextBlockComponent/ArticleTexteBlockComponent';
-import { memo } from 'react';
+import { HTMLAttributeAnchorTarget, memo } from 'react';
 import ViewIcon from 'shared/assets/icons/views.svg';
 import { classNames } from 'shared/lib/classNames';
 import { AppLInk, AppLinkVariant } from 'shared/ui/AppLink/ui/AppLInk';
@@ -20,10 +20,11 @@ interface ArticleListItemProps {
   className?: string;
   article: Article;
   view: ArticlesViewVariant;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 export const ArticleListItem = memo(
-  ({ className, view, article }: ArticleListItemProps) => {
+  ({ className, view, article, target }: ArticleListItemProps) => {
     const textBlock = article.blocks.find(
       (block) => block.type === 'TEXT'
     ) as ArticleTextBlock;
@@ -97,6 +98,7 @@ export const ArticleListItem = memo(
             </div>
             <div className={classes.footer}>
               <AppLInk
+                target={target}
                 to={`${AppPath.articlesDetails}${article.id}`}
                 variant={AppLinkVariant.BUTTON}
                 className={classes.readMoreBtn}
@@ -131,6 +133,7 @@ export const ArticleListItem = memo(
           ])}
         >
           <AppLInk
+            target={target}
             to={`${AppPath.articlesDetails}${article.id}`}
             className={classes.readMoreBtn}
           >
