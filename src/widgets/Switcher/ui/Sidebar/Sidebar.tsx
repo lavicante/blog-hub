@@ -8,6 +8,7 @@ import { getSidebarItems } from 'widgets/Switcher/selectors/getSideBarItems/getS
 import { SidebarItem } from 'widgets/Switcher/ui/SidebarItem/SidebarItem';
 
 import classes from './Sidebar.module.scss';
+import { VStack } from 'shared/ui/Stack';
 
 interface SidebarProps {
   className?: string;
@@ -26,11 +27,11 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
         [classes.collapsed]: collapsed,
       })}
     >
-      <div className={classes.links}>
+      <VStack gap={'16'} className={classes.links}>
         {sidebarItems.map((item) => (
           <SidebarItem key={item.path} item={item} collapsed={collapsed} />
         ))}
-      </div>
+      </VStack>
       <Button
         data-testid='sidebar-toggle'
         onClick={onCollapsed}

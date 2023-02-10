@@ -16,7 +16,7 @@
         "prettier",
         "plugin:import/recommended",
         "plugin:import/typescript",
-        "plugin:i18next/recommended"
+        "plugin:i18next/recommended",
     ],
     "overrides": [
         {
@@ -38,7 +38,8 @@
         "import",
         "simple-import-sort",
         "i18next",
-        "react-hooks"
+        "react-hooks",
+        "fsd-check-imports"
     ],
     "rules": {
         "import/no-unresolved": "off",
@@ -68,6 +69,7 @@
             {
                 "endOfLine": "auto"
             }
-        ]
+        ],
+        "fsd-check-imports/path-checker": "error"
     }
 }

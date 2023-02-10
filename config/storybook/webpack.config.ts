@@ -10,6 +10,8 @@ export default ({ config }: { config: webpack.Configuration }) => {
     build: '',
     entry: '',
     src: path.resolve(__dirname, '..', '..', 'src'),
+    locales: '',
+    buildLocales: '',
   };
 
   config.resolve!.modules = [paths.src, 'node_modules'];
