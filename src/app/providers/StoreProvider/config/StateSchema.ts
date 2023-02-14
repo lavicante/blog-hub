@@ -7,7 +7,6 @@ import {
   ReducersMapObject,
   ThunkMiddleware,
 } from '@reduxjs/toolkit';
-import { To } from '@remix-run/router';
 import { AxiosInstance } from 'axios';
 import { ArticleDetailsSchema } from 'entities/Article';
 import { UserSchema } from 'entities/User';
@@ -20,11 +19,12 @@ import {
   ArticleDetailsPageRecomendation,
 } from 'pages/ArticleDetails';
 import { ArticlesSchema } from 'pages/Articles';
-import { NavigateOptions } from 'react-router/dist/lib/context';
+import { rtkApi } from 'shared/lib/api/rtkApi';
 
 export interface StateSchema {
   user: UserSchema;
   savedScroll: ScrollSaveSchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
   login?: LoginSchema;
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
@@ -49,7 +49,6 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ExtraArgs {
   api: AxiosInstance;
-  navigate?: (to: To, options?: NavigateOptions) => void;
 }
 
 export interface ThunkConfig<T> {
@@ -57,11 +56,3 @@ export interface ThunkConfig<T> {
   extra: ExtraArgs;
   state: StateSchema;
 }
-
-export type StoreType = EnhancedStore<
-  CombinedState<StateSchema>,
-  AnyAction,
-  MiddlewareArray<
-    [ThunkMiddleware<CombinedState<StateSchema>, AnyAction, ExtraArgs>]
-  >
->;
