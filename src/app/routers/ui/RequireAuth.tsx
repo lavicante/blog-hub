@@ -24,14 +24,13 @@ export function RequireAuth({ children, roles }: RequireAuthProps) {
     });
   }, [roles, userRoles]);
 
+  if (!auth) {
+    return <Navigate to={AppPath.main} state={{ from: location }} replace />;
+  }
   if (!hasRequiredRole) {
     return (
       <Navigate to={AppPath.forbidden} state={{ from: location }} replace />
     );
-  }
-
-  if (!auth) {
-    return <Navigate to={AppPath.main} state={{ from: location }} replace />;
   }
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
