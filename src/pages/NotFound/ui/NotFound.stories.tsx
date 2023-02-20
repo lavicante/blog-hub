@@ -6,7 +6,7 @@ import React from 'react';
 import { NotFound } from './NotFound';
 
 export default {
-  title: 'pages/NotFound',
+  title: 'pages/Forbbiden',
   component: NotFound,
 
   argTypes: {
