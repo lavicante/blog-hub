@@ -9,12 +9,9 @@ import { Card } from 'shared/ui/Card/ui/Card';
 import { Icon, ICON_COLOR_VARIAN } from 'shared/ui/Icon/ui/Icon';
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
-import {
-  Article,
-  ArticlesViewVariant,
-  ArticleTextBlock,
-} from '../../model/types/article';
+import { Article, ArticleTextBlock } from '../../model/types/article';
 import classes from './ArticleListItem.module.scss';
+import { ArticlesViewVariant } from 'entities/Article';
 
 interface ArticleListItemProps {
   className?: string;

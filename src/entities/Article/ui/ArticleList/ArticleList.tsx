@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames';
 import { Text, TextVarianEnum } from 'shared/ui/Text/Text';
 
-import { Article, ArticlesViewVariant } from '../../model/types/article';
+import { Article } from '../../model/types/article';
 import classes from './ArticleList.module.scss';
+import { ArticlesViewVariant } from 'entities/Article';
 
 interface ArticleListProps {
   className?: string;

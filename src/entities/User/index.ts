@@ -7,5 +7,5 @@ export {
   getRoleSelector,
 } from './model/selectors/roleSelector/roleSelector';
 export { userActions, userReducer } from './model/slice/userSlice';
-export { User, UserSchema } from './model/types/user';
+export type { User, UserSchema } from './model/types/user';
 export { UserRole } from './model/types/user';

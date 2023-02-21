@@ -7,7 +7,7 @@ export const useTrottle = (
   const trottleRef = useRef(false);
 
   return useCallback(
-    (...args) => {
+    (...args: any[]) => {
       if (!trottleRef.current) {
         callback(...args);
         trottleRef.current = true;

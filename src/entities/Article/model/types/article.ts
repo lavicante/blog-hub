@@ -1,4 +1,5 @@
 import { User } from 'entities/User';
+import { ArticleType } from 'entities/Article/model/constants/article';
 
 export enum ArticleBlockType {
   CODE = 'CODE',
@@ -33,13 +34,6 @@ export type ArticleBlock =
   | ArticleTextBlock
   | ArticleImageBlock;
 
-export enum ArticleType {
-  IT = 'IT',
-  SCIENCE = 'SCIENCE',
-  ECONOMICS = 'ECONOMICS',
-  ALL = 'ALL',
-}
-
 export interface Article {
   id: string;
   title: string;
@@ -50,9 +44,4 @@ export interface Article {
   type: ArticleType[];
   blocks: ArticleBlock[];
   user: User;
-}
-
-export const enum ArticlesViewVariant {
-  LIST = 'LIST',
-  CARD = 'CARD',
 }
