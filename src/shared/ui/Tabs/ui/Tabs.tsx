@@ -12,7 +12,6 @@ interface TabsProps {
   tabs: ITab[];
   value: string;
   onClickTab: (value: ITab) => void;
-
   className?: string;
 }
 

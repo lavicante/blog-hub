@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 
+import { buildBabelLoader } from './loaders/buildBabelLoader';
 import { buildCssLoaders } from './loaders/buildCssLoaders';
 import { BuildOptions } from './types/configs';
 
@@ -20,24 +21,17 @@ export function BuildModules(options: BuildOptions): webpack.ModuleOptions {
 
   const stylesLoader = buildCssLoaders(options.isDev);
 
-  const tsLoaderRules = {
-    test: /\.tsx?$/,
-    use: 'ts-loader',
-    exclude: /node_modules/,
-  };
+  const babelLoaderCode = buildBabelLoader({ ...options, isTSX: false });
 
-  const babelLoader = {
-    test: /\.m?js$/,
-    exclude: /node_modules/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env'],
-      },
-    },
-  };
+  const tsxBabelLoaderCode = buildBabelLoader({ ...options, isTSX: true });
 
   return {
-    rules: [tsLoaderRules, stylesLoader, svgLoader, fileLoader, babelLoader],
+    rules: [
+      stylesLoader,
+      svgLoader,
+      fileLoader,
+      babelLoaderCode,
+      tsxBabelLoaderCode,
+    ],
   };
 }
